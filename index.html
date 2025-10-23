@@ -3,722 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome | Your Digital Journey Starts Here</title>
-    <meta name="description" content="Welcome to our platform - where innovation meets simplicity. Join thousands of users who trust us for their digital solutions.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Greeting Page</title>
     <style>
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #06b6d4;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --background-light: #ffffff;
-            --background-dark: #f8fafc;
-            --border-color: #e5e7eb;
-            --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--background-light);
-        }
-
-        /* Header Navigation */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
+            font-family: 'Arial', sans-serif;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
+            margin: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="60" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="90" cy="10" r="1" fill="white" opacity="0.1"/></svg>');
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
             color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            animation: fadeInUp 1s ease-out;
         }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary-color);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-large);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: var(--background-dark);
-        }
-
+        
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
             text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        h1 {
+            margin-bottom: 2rem;
             font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .feature-card {
-            background: var(--background-light);
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-light);
+        
+        .greeting-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            text-align: center;
+            box-shadow: 0 4px 15px 0 rgba(255, 107, 107, 0.4);
         }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-large);
+        
+        .greeting-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px 0 rgba(255, 107, 107, 0.6);
         }
-
-        .feature-icon {
-            width: 4rem;
-            height: 4rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
+        
+        .greeting-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .greeting-message {
+            margin-top: 2rem;
             font-size: 1.5rem;
-            color: white;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 4rem 2rem;
-            background: var(--background-light);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            text-align: center;
-            color: white;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-primary);
-            color: white;
-            padding: 3rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 1rem 2rem;
-                box-shadow: var(--shadow-medium);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav {
-                padding: 1rem;
-            }
-
-            .hero-content,
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            .feature-card {
-                padding: 2rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            ::before,
-            ::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Focus styles for keyboard navigation */
-        .btn:focus,
-        .nav-links a:focus {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
+        
+        .greeting-message.show {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="header" id="header">
-        <nav class="nav">
-            <div class="logo">YourBrand</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Welcome to Your Digital Future</h1>
-            <p>Experience the perfect blend of innovation and simplicity. Join thousands of users who trust us to deliver exceptional digital solutions that transform the way you work and live.</p>
-            <div class="cta-buttons">
-                <a href="#features" class="btn btn-primary">Get Started</a>
-                <a href="#about" class="btn btn-secondary">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Us?</h2>
-            <p class="section-subtitle">We provide cutting-edge solutions designed to meet your unique needs and exceed your expectations.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Lightning Fast</h3>
-                    <p>Experience blazing-fast performance with our optimized infrastructure that ensures your projects load instantly and run smoothly.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Secure & Reliable</h3>
-                    <p>Your data is protected with enterprise-grade security measures. We maintain 99.9% uptime to keep your business running 24/7.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Beautiful Design</h3>
-                    <p>Enjoy intuitive interfaces crafted with attention to detail. Every pixel is designed to provide the best user experience possible.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile First</h3>
-                    <p>Access your work from anywhere with our responsive design that works perfectly on desktop, tablet, and mobile devices.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Easy Integration</h3>
-                    <p>Seamlessly connect with your existing tools and workflows. Our API makes integration simple and straightforward.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>24/7 Support</h3>
-                    <p>Get help when you need it with our dedicated support team available around the clock to assist you with any questions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats" id="about">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>50K+</h3>
-                    <p>Happy Users</p>
-                </div>
-                <div class="stat-item">
-                    <h3>99.9%</h3>
-                    <p>Uptime</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>Support</p>
-                </div>
-                <div class="stat-item">
-                    <h3>150+</h3>
-                    <p>Countries</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Get Started?</h2>
-            <p>Join thousands of satisfied users and experience the difference today.</p>
-            <a href="#contact" class="btn btn-primary">Start Your Journey</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>YourBrand</h3>
-                    <p>Building the future of digital experiences, one innovation at a time.</p>
-                    <p>© 2024 YourBrand. All rights reserved.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <a href="#home">Home</a>
-                    <a href="#features">Features</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p>Email: hello@yourbrand.com</p>
-                    <p>Phone: +1 (555) 123-4567</p>
-                    <p>Address: 123 Innovation St, Tech City</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <a href="#">Twitter</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>Made with ❤️ for an amazing user experience</p>
-            </div>
-        </div>
-    </footer>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <button class="greeting-btn" onclick="showGreeting()">Click for Greeting</button>
+        <div id="greetingMessage" class="greeting-message"></div>
+    </div>
 
     <script>
-        // Mobile Navigation Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.getElementById('navToggle');
-            const navLinks = document.getElementById('navLinks');
-            const header = document.getElementById('header');
-
-            navToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
-            });
-
-            // Close mobile menu when clicking on links
-            navLinks.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    navLinks.classList.remove('active');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Header background on scroll
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                    header.style.boxShadow = 'none';
-                }
-            });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        const headerHeight = document.querySelector('.header').offsetHeight;
-                        const targetPosition = target.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe feature cards and stats
-            document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-
-            // Counter animation for stats
-            const animateCounter = (element, target) => {
-                let current = 0;
-                const increment = target / 100;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        element.textContent = target + (element.textContent.includes('+') ? '+' : '') + 
-                                            (element.textContent.includes('%') ? '%' : '');
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '') + 
-                                            (element.textContent.includes('%') ? '%' : '');
-                    }
-                }, 20);
-            };
-
-            // Animate counters when stats section is visible
-            const statsObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const statNumbers = entry.target.querySelectorAll('.stat-item h3');
-                        statNumbers.forEach(stat => {
-                            const text = stat.textContent;
-                            const number = parseInt(text.replace(/\D/g, ''));
-                            if (number) {
-                                stat.textContent = '0' + text.replace(/\d+/g, '');
-                                animateCounter(stat, number);
-                            }
-                        });
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const statsSection = document.querySelector('.stats');
-            if (statsSection) {
-                statsObserver.observe(statsSection);
-            }
-        });
+        function showGreeting() {
+            const messages = [
+                "Hello there! 👋",
+                "Welcome to our page! 🎉",
+                "Have a wonderful day! ☀️",
+                "Nice to see you! 😊",
+                "Greetings, friend! 🌟"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageElement = document.getElementById('greetingMessage');
+            
+            // Add fade out effect
+            messageElement.classList.remove('show');
+            
+            setTimeout(() => {
+                messageElement.textContent = randomMessage;
+                messageElement.classList.add('show');
+            }, 100);
+        }
     </script>
 </body>
 </html>
