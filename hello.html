@@ -43,6 +43,32 @@
             }
         }
         
+        .hello-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+        
+        .hello-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
         @media (max-width: 768px) {
             .hello-container {
                 padding: 2rem;
@@ -52,12 +78,23 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .hello-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="hello-container">
         <h1>Hello</h1>
+        <button class="hello-button" onclick="sayHello()">Hello Button</button>
     </div>
+    <script>
+        function sayHello() {
+            alert('Hello! 👋 Thanks for clicking the button!');
+        }
+    </script>
 </body>
 </html>
