@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <!-- Original Registration Form -->
   <h2>Registration Form</h2>
 
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
@@ -68,3 +69,7 @@
   {{registrationForm.status | json}}
   {{registrationForm.value | json}}
 </div>
+
+<!-- New User Form Component -->
+<hr style="margin: 40px 0; border: 2px solid #ddd;">
+<app-user-form></app-user-form>

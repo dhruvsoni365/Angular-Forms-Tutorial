@@ -1,0 +1,86 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2 class="form-title">User Information Form</h2>
+    <p class="form-subtitle">Please fill in your details below</p>
+    
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+      
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name" class="form-label">
+          Full Name <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-input"
+          [class.error]="hasError('name', 'required') || hasError('name', 'minlength') || hasError('name', 'maxlength') || hasError('name', 'pattern')"
+          placeholder="Enter your full name"
+          autocomplete="name"
+        />
+        <div class="error-message" *ngIf="getErrorMessage('name')">
+          {{ getErrorMessage('name') }}
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">
+          Email Address <span class="required">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-input"
+          [class.error]="hasError('email', 'required') || hasError('email', 'email') || hasError('email', 'maxlength')"
+          placeholder="Enter your email address"
+          autocomplete="email"
+        />
+        <div class="error-message" *ngIf="getErrorMessage('email')">
+          {{ getErrorMessage('email') }}
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="resetForm()"
+          [disabled]="!userForm.dirty"
+        >
+          Reset
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="userForm.invalid && isSubmitted"
+        >
+          Submit
+        </button>
+      </div>
+
+      <!-- Form Status Display (for development/debugging) -->
+      <div class="form-status" *ngIf="isSubmitted">
+        <div class="status-item">
+          <strong>Form Status:</strong>
+          <span [class.valid]="userForm.valid" [class.invalid]="!userForm.valid">
+            {{ userForm.valid ? 'Valid' : 'Invalid' }}
+          </span>
+        </div>
+        <div class="status-item" *ngIf="!userForm.valid">
+          <strong>Errors:</strong>
+          <ul class="error-list">
+            <li *ngIf="hasError('name', 'required')">Name is required</li>
+            <li *ngIf="hasError('name', 'minlength')">Name is too short</li>
+            <li *ngIf="hasError('name', 'pattern')">Name contains invalid characters</li>
+            <li *ngIf="hasError('email', 'required')">Email is required</li>
+            <li *ngIf="hasError('email', 'email')">Email format is invalid</li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
