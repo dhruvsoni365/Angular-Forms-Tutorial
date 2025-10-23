@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | YourBrand - Get in Touch</title>
+    <meta name="description" content="Contact YourBrand for support, inquiries, or partnerships. We're here to help with phone, email, and live chat support available 24/7.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background-light: #ffffff;
+            --background-dark: #f8fafc;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background-light);
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="60" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="70" r="1.5" fill="white" opacity="0.1"/><circle cx="90" cy="10" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: var(--background-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: var(--background-dark);
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-item-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .contact-item-content p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .contact-item-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-item-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Business Hours */
+        .business-hours {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .business-hours h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hours-item .day {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .hours-item .time {
+            color: var(--text-secondary);
+        }
+
+        .hours-item.today {
+            background: var(--background-dark);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 0 -0.5rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group .error {
+            border-color: var(--error-color);
+        }
+
+        .form-group .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .form-submit {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* Social Media Links */
+        .social-section {
+            background: var(--background-dark);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .social-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .social-link.twitter:hover {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .social-link.linkedin:hover {
+            background: #0077b5;
+            color: white;
+        }
+
+        .social-link.facebook:hover {
+            background: #1877f2;
+            color: white;
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .map-section p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .map-container {
+            background: var(--background-dark);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                box-shadow: var(--shadow-medium);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .page-header {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .business-hours {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                padding: 1rem;
+            }
+
+            .page-header,
+            .contact-section,
+            .social-section,
+            .map-section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-item {
+                align-items: center;
+            }
+
+            .contact-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            ::before,
+            ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Focus styles for keyboard navigation */
+        .form-submit:focus,
+        .social-link:focus,
+        .nav-links a:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">YourBrand</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Get in touch with our team for support, partnerships, or any questions you might have.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Ready to start your journey with us? Contact our friendly team - we're here to help you every step of the way.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-item-content">
+                                <h3>Visit Our Office</h3>
+                                <p>123 Innovation Street<br>
+                                Tech City, TC 12345<br>
+                                United States</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-item-content">
+                                <h3>Call Us</h3>
+                                <p>Main: <a href="tel:+15551234567">+1 (555) 123-4567</a><br>
+                                Support: <a href="tel:+15551234568">+1 (555) 123-4568</a><br>
+                                Sales: <a href="tel:+15551234569">+1 (555) 123-4569</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-item-content">
+                                <h3>Email Us</h3>
+                                <p>General: <a href="mailto:hello@yourbrand.com">hello@yourbrand.com</a><br>
+                                Support: <a href="mailto:support@yourbrand.com">support@yourbrand.com</a><br>
+                                Sales: <a href="mailto:sales@yourbrand.com">sales@yourbrand.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-item-content">
+                                <h3>Live Chat</h3>
+                                <p>Available 24/7 on our website<br>
+                                Average response time: &lt; 2 minutes<br>
+                                <a href="#live-chat">Start Live Chat</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="business-hours">
+                        <h3>Business Hours</h3>
+                        <div class="hours-list">
+                            <div class="hours-item today">
+                                <span class="day">Monday</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Tuesday</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Wednesday</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Thursday</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Friday</span>
+                                <span class="time">9:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Saturday</span>
+                                <span class="time">10:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Sunday</span>
+                                <span class="time">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>Send us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <span class="error-message" id="firstNameError"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <span class="error-message" id="lastNameError"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                                <span class="error-message" id="emailError"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                                <span class="error-message" id="phoneError"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="sales">Sales & Pricing</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="error-message" id="subjectError"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+
+                        <button type="submit" class="form-submit" id="submitBtn">
+                            Send Message
+                        </button>
+
+                        <div class="form-message" id="formMessage" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2>Follow Us</h2>
+            <p>Stay connected with us on social media for the latest updates, tips, and behind-the-scenes content.</p>
+            
+            <div class="social-links">
+                <a href="https://twitter.com/yourbrand" class="social-link twitter" target="_blank" rel="noopener noreferrer">
+                    <span>🐦</span>
+                    <span>Twitter</span>
+                </a>
+                
+                <a href="https://linkedin.com/company/yourbrand" class="social-link linkedin" target="_blank" rel="noopener noreferrer">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                
+                <a href="https://facebook.com/yourbrand" class="social-link facebook" target="_blank" rel="noopener noreferrer">
+                    <span>👥</span>
+                    <span>Facebook</span>
+                </a>
+                
+                <a href="https://instagram.com/yourbrand" class="social-link instagram" target="_blank" rel="noopener noreferrer">
+                    <span>📷</span>
+                    <span>Instagram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2>Find Us</h2>
+            <p>Located in the heart of Tech City, we're easy to reach by car, public transportation, or on foot.</p>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    🗺️ Interactive Map<br>
+                    <small>123 Innovation Street, Tech City, TC 12345</small><br>
+                    <small>Click to open in Maps app</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>YourBrand</h3>
+                    <p>Building the future of digital experiences, one innovation at a time.</p>
+                    <p>© 2024 YourBrand. All rights reserved.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#about">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: hello@yourbrand.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation St, Tech City</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Made with ❤️ for an amazing user experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            const header = document.getElementById('header');
+
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            });
+
+            // Close mobile menu when clicking on links
+            navLinks.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    navLinks.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Header background on scroll
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // Contact Form Handling
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+
+            // Form validation
+            function validateField(field, errorElement, validationFn) {
+                const value = field.value.trim();
+                const isValid = validationFn(value);
+                
+                if (isValid) {
+                    field.classList.remove('error');
+                    errorElement.textContent = '';
+                    return true;
+                } else {
+                    field.classList.add('error');
+                    return false;
+                }
+            }
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            function validatePhone(phone) {
+                if (!phone) return true; // Optional field
+                const re = /^[\+]?[1-9][\d]{0,15}$/;
+                return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+            }
+
+            // Real-time validation
+            document.getElementById('firstName').addEventListener('blur', function() {
+                validateField(this, document.getElementById('firstNameError'), value => {
+                    if (!value) {
+                        document.getElementById('firstNameError').textContent = 'First name is required';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            document.getElementById('lastName').addEventListener('blur', function() {
+                validateField(this, document.getElementById('lastNameError'), value => {
+                    if (!value) {
+                        document.getElementById('lastNameError').textContent = 'Last name is required';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            document.getElementById('email').addEventListener('blur', function() {
+                validateField(this, document.getElementById('emailError'), value => {
+                    if (!value) {
+                        document.getElementById('emailError').textContent = 'Email is required';
+                        return false;
+                    }
+                    if (!validateEmail(value)) {
+                        document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            document.getElementById('phone').addEventListener('blur', function() {
+                validateField(this, document.getElementById('phoneError'), value => {
+                    if (value && !validatePhone(value)) {
+                        document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            document.getElementById('subject').addEventListener('change', function() {
+                validateField(this, document.getElementById('subjectError'), value => {
+                    if (!value) {
+                        document.getElementById('subjectError').textContent = 'Please select a subject';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            document.getElementById('message').addEventListener('blur', function() {
+                validateField(this, document.getElementById('messageError'), value => {
+                    if (!value) {
+                        document.getElementById('messageError').textContent = 'Message is required';
+                        return false;
+                    }
+                    if (value.length < 10) {
+                        document.getElementById('messageError').textContent = 'Message must be at least 10 characters long';
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            // Form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate all fields
+                const firstName = document.getElementById('firstName');
+                const lastName = document.getElementById('lastName');
+                const email = document.getElementById('email');
+                const phone = document.getElementById('phone');
+                const subject = document.getElementById('subject');
+                const message = document.getElementById('message');
+
+                let isValid = true;
+
+                // Validate required fields
+                if (!validateField(firstName, document.getElementById('firstNameError'), value => !!value)) {
+                    document.getElementById('firstNameError').textContent = 'First name is required';
+                    isValid = false;
+                }
+
+                if (!validateField(lastName, document.getElementById('lastNameError'), value => !!value)) {
+                    document.getElementById('lastNameError').textContent = 'Last name is required';
+                    isValid = false;
+                }
+
+                if (!validateField(email, document.getElementById('emailError'), value => !!value && validateEmail(value))) {
+                    document.getElementById('emailError').textContent = !email.value.trim() ? 'Email is required' : 'Please enter a valid email address';
+                    isValid = false;
+                }
+
+                if (phone.value.trim() && !validateField(phone, document.getElementById('phoneError'), validatePhone)) {
+                    document.getElementById('phoneError').textContent = 'Please enter a valid phone number';
+                    isValid = false;
+                }
+
+                if (!validateField(subject, document.getElementById('subjectError'), value => !!value)) {
+                    document.getElementById('subjectError').textContent = 'Please select a subject';
+                    isValid = false;
+                }
+
+                if (!validateField(message, document.getElementById('messageError'), value => !!value && value.length >= 10)) {
+                    const errorText = !message.value.trim() ? 'Message is required' : 'Message must be at least 10 characters long';
+                    document.getElementById('messageError').textContent = errorText;
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    formMessage.textContent = 'Please fix the errors above and try again.';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                    return;
+                }
+
+                // Simulate form submission
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                formMessage.style.display = 'none';
+
+                setTimeout(() => {
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Show success message
+                    formMessage.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                    
+                    // Clear any error states
+                    document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                }, 2000);
+            });
+
+            // Set today's business hours
+            const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
+            const hoursItems = document.querySelectorAll('.hours-item');
+            hoursItems.forEach((item, index) => {
+                item.classList.remove('today');
+            });
+            
+            // Adjust for Monday = 0 in our list vs Sunday = 0 in getDay()
+            const todayIndex = today === 0 ? 6 : today - 1;
+            if (hoursItems[todayIndex]) {
+                hoursItems[todayIndex].classList.add('today');
+            }
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe contact cards and form
+            document.querySelectorAll('.contact-info, .contact-form, .social-links, .map-container').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
