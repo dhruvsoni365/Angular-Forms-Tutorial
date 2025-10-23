@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Contacts Directory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .table-container {
+            padding: 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+
+        thead {
+            background: #f8f9fa;
+        }
+
+        th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 3px solid #dee2e6;
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #dee2e6;
+            color: #495057;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+
+        .name {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .phone {
+            font-family: 'Courier New', monospace;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .index {
+            font-weight: 600;
+            color: #6c757d;
+            text-align: center;
+            width: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            th, td {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 13px;
+            }
+            
+            .table-container {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📞 Random Contacts Directory</h1>
+            <p>A collection of randomly generated contact information</p>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="index">#</th>
+                        <th>Full Name</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="index">1</td>
+                        <td class="name">Sarah Johnson</td>
+                        <td class="phone">(555) 123-4567</td>
+                    </tr>
+                    <tr>
+                        <td class="index">2</td>
+                        <td class="name">Michael Chen</td>
+                        <td class="phone">(555) 987-6543</td>
+                    </tr>
+                    <tr>
+                        <td class="index">3</td>
+                        <td class="name">Emily Rodriguez</td>
+                        <td class="phone">(555) 246-8135</td>
+                    </tr>
+                    <tr>
+                        <td class="index">4</td>
+                        <td class="name">David Thompson</td>
+                        <td class="phone">(555) 369-2580</td>
+                    </tr>
+                    <tr>
+                        <td class="index">5</td>
+                        <td class="name">Jessica Williams</td>
+                        <td class="phone">(555) 741-9630</td>
+                    </tr>
+                    <tr>
+                        <td class="index">6</td>
+                        <td class="name">James Anderson</td>
+                        <td class="phone">(555) 852-7419</td>
+                    </tr>
+                    <tr>
+                        <td class="index">7</td>
+                        <td class="name">Ashley Martinez</td>
+                        <td class="phone">(555) 963-1470</td>
+                    </tr>
+                    <tr>
+                        <td class="index">8</td>
+                        <td class="name">Robert Davis</td>
+                        <td class="phone">(555) 159-3570</td>
+                    </tr>
+                    <tr>
+                        <td class="index">9</td>
+                        <td class="name">Amanda Wilson</td>
+                        <td class="phone">(555) 753-9514</td>
+                    </tr>
+                    <tr>
+                        <td class="index">10</td>
+                        <td class="name">Christopher Brown</td>
+                        <td class="phone">(555) 486-2759</td>
+                    </tr>
+                    <tr>
+                        <td class="index">11</td>
+                        <td class="name">Jennifer Garcia</td>
+                        <td class="phone">(555) 317-6842</td>
+                    </tr>
+                    <tr>
+                        <td class="index">12</td>
+                        <td class="name">Matthew Miller</td>
+                        <td class="phone">(555) 928-4613</td>
+                    </tr>
+                    <tr>
+                        <td class="index">13</td>
+                        <td class="name">Samantha Lee</td>
+                        <td class="phone">(555) 604-7251</td>
+                    </tr>
+                    <tr>
+                        <td class="index">14</td>
+                        <td class="name">Daniel Taylor</td>
+                        <td class="phone">(555) 815-3962</td>
+                    </tr>
+                    <tr>
+                        <td class="index">15</td>
+                        <td class="name">Lauren Moore</td>
+                        <td class="phone">(555) 492-6078</td>
+                    </tr>
+                    <tr>
+                        <td class="index">16</td>
+                        <td class="name">Andrew Jackson</td>
+                        <td class="phone">(555) 537-1849</td>
+                    </tr>
+                    <tr>
+                        <td class="index">17</td>
+                        <td class="name">Megan White</td>
+                        <td class="phone">(555) 263-8450</td>
+                    </tr>
+                    <tr>
+                        <td class="index">18</td>
+                        <td class="name">Kevin Harris</td>
+                        <td class="phone">(555) 680-2174</td>
+                    </tr>
+                    <tr>
+                        <td class="index">19</td>
+                        <td class="name">Nicole Thomas</td>
+                        <td class="phone">(555) 394-7562</td>
+                    </tr>
+                    <tr>
+                        <td class="index">20</td>
+                        <td class="name">Brandon Clark</td>
+                        <td class="phone">(555) 751-4829</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
