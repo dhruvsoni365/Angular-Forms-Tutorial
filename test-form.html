@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test</title>
+</head>
+<body>
+    <h1>Testing Form Components</h1>
+    
+    <h2>Test Results:</h2>
+    <ul id="testResults"></ul>
+    
+    <script>
+        // Simple test suite for form validation
+        const tests = [];
+        
+        // Test name validation
+        function testNameValidation() {
+            const validateName = (name) => /^[a-zA-Z\s]{2,50}$/.test(name.trim());
+            
+            return {
+                'Valid name "John Doe"': validateName('John Doe'),
+                'Valid single name "John"': validateName('John'),
+                'Invalid empty name': !validateName(''),
+                'Invalid single character': !validateName('J'),
+                'Invalid name with numbers': !validateName('John123'),
+                'Invalid name too long': !validateName('A'.repeat(51))
+            };
+        }
+        
+        // Test mobile validation
+        function testMobileValidation() {
+            const validateMobile = (mobile) => /^[\+]?[0-9]{10,15}$/.test(mobile.replace(/\s/g, ''));
+            
+            return {
+                'Valid 10-digit number': validateMobile('1234567890'),
+                'Valid international number': validateMobile('+1234567890'),
+                'Valid 15-digit number': validateMobile('123456789012345'),
+                'Invalid short number': !validateMobile('123456789'),
+                'Invalid long number': !validateMobile('1234567890123456'),
+                'Invalid with letters': !validateMobile('12345abcde'),
+                'Valid with spaces (should work)': validateMobile('123 456 7890')
+            };
+        }
+        
+        // Run tests
+        function runTests() {
+            const results = document.getElementById('testResults');
+            const allTests = {
+                ...testNameValidation(),
+                ...testMobileValidation()
+            };
+            
+            let passedCount = 0;
+            let totalCount = Object.keys(allTests).length;
+            
+            for (const [testName, result] of Object.entries(allTests)) {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${testName}:</strong> ${result ? '✅ PASS' : '❌ FAIL'}`;
+                li.style.color = result ? 'green' : 'red';
+                results.appendChild(li);
+                
+                if (result) passedCount++;
+            }
+            
+            const summary = document.createElement('li');
+            summary.innerHTML = `<strong>Summary: ${passedCount}/${totalCount} tests passed</strong>`;
+            summary.style.fontWeight = 'bold';
+            summary.style.marginTop = '20px';
+            summary.style.padding = '10px';
+            summary.style.backgroundColor = passedCount === totalCount ? '#d4edda' : '#f8d7da';
+            results.appendChild(summary);
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runTests);
+    </script>
+</body>
+</html>
