@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List - Task Manager</title>
+    <link rel="stylesheet" href="todo-style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Todo List</h1>
+            <p>Stay organized and get things done!</p>
+        </header>
+
+        <main>
+            <!-- Add Todo Form -->
+            <section class="add-todo-section">
+                <form id="todo-form" class="todo-form">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="todo-input" 
+                            placeholder="What needs to be done?" 
+                            required
+                            autocomplete="off"
+                        >
+                        <select id="priority-select" aria-label="Priority level">
+                            <option value="low">Low Priority</option>
+                            <option value="medium" selected>Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <input 
+                            type="date" 
+                            id="due-date" 
+                            aria-label="Due date"
+                        >
+                        <button type="submit" id="add-btn">Add Task</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Filter and Stats -->
+            <section class="controls-section">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                <div class="stats">
+                    <span id="todo-count">0 tasks remaining</span>
+                </div>
+            </section>
+
+            <!-- Todo List -->
+            <section class="todo-list-section">
+                <ul id="todo-list" class="todo-list" role="list">
+                    <!-- Todos will be dynamically inserted here -->
+                </ul>
+            </section>
+
+            <!-- Bulk Actions -->
+            <section class="bulk-actions">
+                <button id="clear-completed" class="secondary-btn">Clear Completed</button>
+                <button id="toggle-all" class="secondary-btn">Toggle All</button>
+            </section>
+        </main>
+
+        <!-- Search Functionality -->
+        <aside class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Search todos..." 
+                    aria-label="Search todos"
+                >
+                <button id="search-btn" aria-label="Search">🔍</button>
+            </div>
+        </aside>
+
+        <!-- Footer -->
+        <footer>
+            <p>Double-click to edit a task • Press Enter to save • Press Escape to cancel</p>
+            <div class="export-import">
+                <button id="export-btn" class="utility-btn">Export</button>
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+                <button id="import-btn" class="utility-btn">Import</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Edit Modal (for mobile editing) -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit Task</h3>
+            <form id="edit-form">
+                <input type="text" id="edit-input" required>
+                <select id="edit-priority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <input type="date" id="edit-due-date">
+                <div class="modal-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancel-edit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="todo-script.js"></script>
+</body>
+</html>

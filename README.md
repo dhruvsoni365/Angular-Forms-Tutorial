@@ -1,55 +1,61 @@
-# Contact Information Form
+# Project Collection
+
+A collection of web applications and forms with modern styling and interactive functionality.
+
+## Applications
+
+### 1. Contact Information Form
 
 A responsive HTML form for collecting user's name and mobile number with real-time validation and modern styling.
 
-## Features
-
-### Form Fields
-- **Full Name**: Text input with validation (2-50 characters, letters and spaces only)
-- **Mobile Number**: Tel input with validation (10-15 digits, optional international format)
-
-### Validation
+#### Features
+- **Form Fields**: Full name and mobile number with validation
 - **Real-time validation**: Instant feedback as user types
-- **Pattern matching**: Name must contain only letters and spaces
-- **Mobile format**: Accepts 10-15 digit numbers with optional + prefix
-- **Auto-formatting**: Mobile number gets formatted for better readability
-- **Submit prevention**: Button disabled until all fields are valid
-
-### Design Features
 - **Responsive design**: Works on desktop, tablet, and mobile devices
 - **Modern styling**: Gradient backgrounds, smooth animations, and hover effects
-- **Accessibility**: Proper labels, focus states, and error messages
-- **User feedback**: Success messages and loading states
 
-## Files
-
+#### Files
 - `contact-form.html` - Main form HTML structure
 - `form-style.css` - Complete CSS styling with responsive design
 - `form-script.js` - JavaScript for validation and user interactions
 - `test-form.html` - Test suite for validation functions
 
-## Usage
+### 2. Todo List Application
 
-1. Open `contact-form.html` in a web browser
-2. Fill in your full name and mobile number
-3. The form will validate inputs in real-time
-4. Submit button becomes active when all fields are valid
-5. Click Submit to see the success message
+A comprehensive task management application with advanced features for organizing and tracking your daily tasks.
 
-## Testing
+#### Features
+- **Task Management**: Add, edit, delete, and mark tasks as complete
+- **Priority Levels**: Set tasks as high, medium, or low priority
+- **Due Dates**: Assign due dates to tasks with overdue indicators
+- **Filtering**: View all, active, or completed tasks
+- **Search**: Find tasks quickly with text search
+- **Local Storage**: Automatic saving of tasks to browser storage
+- **Export/Import**: Backup and restore your tasks as JSON files
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Accessibility**: Full keyboard navigation and screen reader support
 
-Open `test-form.html` to run automated tests for the validation functions. The test suite validates:
+#### Files
+- `todo.html` - Main todo application HTML structure
+- `todo-style.css` - Complete CSS styling with responsive design and animations
+- `todo-script.js` - JavaScript application with full functionality
 
-### Name Validation Tests
-- ✅ Valid names with letters and spaces
-- ✅ Rejects names with numbers or special characters
-- ✅ Enforces length requirements (2-50 characters)
+#### Usage
+1. Open `todo.html` in a web browser
+2. Add new tasks using the form at the top
+3. Set priority levels and due dates as needed
+4. Use filters to organize your view (All/Active/Completed)
+5. Double-click tasks to edit them inline (desktop)
+6. Use the search box to find specific tasks
+7. Export your tasks for backup or import from previous backups
 
-### Mobile Validation Tests
-- ✅ Accepts 10-15 digit numbers
-- ✅ Supports international format with + prefix
-- ✅ Handles formatted numbers with spaces
-- ✅ Rejects invalid formats and lengths
+#### Advanced Features
+- **Bulk Actions**: Toggle all tasks or clear completed tasks at once
+- **Statistics**: Track remaining tasks and completion progress
+- **Keyboard Shortcuts**: Press Escape to cancel edits
+- **Mobile Editing**: Dedicated modal for editing tasks on mobile devices
+- **Data Persistence**: All tasks are automatically saved to local storage
+- **Animation Effects**: Smooth transitions and hover effects
 
 ## Browser Compatibility
 
@@ -57,45 +63,18 @@ Open `test-form.html` to run automated tests for the validation functions. The t
 - Mobile browsers (iOS Safari, Android Chrome)
 - Responsive design works on all screen sizes
 
-## Customization
+## Development Notes
 
-### Styling
-Edit `form-style.css` to customize:
-- Colors and gradients
-- Font sizes and families
-- Spacing and layout
-- Animation effects
+### Form Application
+- Client-side validation only - add server-side validation for production
+- Customizable styling and validation rules
+- Full accessibility compliance
 
-### Validation Rules
-Edit `form-script.js` to modify:
-- Name validation pattern
-- Mobile number format requirements
-- Error messages
-- Form behavior
-
-### Form Submission
-The current implementation shows a success message. To integrate with a backend:
-
-```javascript
-// Replace the setTimeout in form submission with actual API call
-fetch('/api/submit-contact', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        name: name,
-        mobile: mobile
-    })
-})
-.then(response => response.json())
-.then(data => {
-    // Handle success
-})
-.catch(error => {
-    // Handle error
-});
-```
+### Todo Application  
+- Uses ES6 classes and modern JavaScript features
+- Local storage for data persistence
+- Modular code structure for easy maintenance
+- Comprehensive error handling and user feedback
 
 ## Security Considerations
 
@@ -104,14 +83,6 @@ fetch('/api/submit-contact', {
 - Consider rate limiting for form submissions
 - Implement CSRF protection for production use
 
-## Accessibility Features
-
-- Semantic HTML structure
-- Proper form labels and associations
-- Focus indicators and keyboard navigation
-- Error messages linked to form fields
-- High contrast colors for readability
-
 ---
 
-**Note**: This is a client-side only implementation. For production use, add server-side validation and proper data handling.
+**Note**: These are client-side only implementations. For production use, add server-side validation and proper data handling.
