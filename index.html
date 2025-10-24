@@ -3,98 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greeting Page</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .container {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        h1 {
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .greeting-btn {
-            background: linear-gradient(45deg, #ff6b6b, #ffa500);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px 0 rgba(255, 107, 107, 0.4);
-        }
-        
-        .greeting-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px 0 rgba(255, 107, 107, 0.6);
-        }
-        
-        .greeting-btn:active {
-            transform: translateY(1px);
-        }
-        
-        .greeting-message {
-            margin-top: 2rem;
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .greeting-message.show {
-            opacity: 1;
-        }
-    </style>
+    <title>Radio Button Selection</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome!</h1>
-        <button class="greeting-btn" onclick="showGreeting()">Click for Greeting</button>
-        <div id="greetingMessage" class="greeting-message"></div>
+        <h1>Please Make Your Selection</h1>
+        
+        <form id="radioForm">
+            <div class="question">
+                <h2>Do you agree with the terms and conditions?</h2>
+                
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="yes" name="answer" value="yes">
+                        <label for="yes">Yes</label>
+                    </div>
+                    
+                    <div class="radio-option">
+                        <input type="radio" id="no" name="answer" value="no">
+                        <label for="no">No</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit</button>
+            <div id="result" class="result"></div>
+        </form>
     </div>
-
-    <script>
-        function showGreeting() {
-            const messages = [
-                "Hello there! 👋",
-                "Welcome to our page! 🎉",
-                "Have a wonderful day! ☀️",
-                "Nice to see you! 😊",
-                "Greetings, friend! 🌟"
-            ];
-            
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            const messageElement = document.getElementById('greetingMessage');
-            
-            // Add fade out effect
-            messageElement.classList.remove('show');
-            
-            setTimeout(() => {
-                messageElement.textContent = randomMessage;
-                messageElement.classList.add('show');
-            }, 100);
-        }
-    </script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
