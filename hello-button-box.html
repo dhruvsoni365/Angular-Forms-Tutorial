@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button in a Box</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .button-box {
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .button-box h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .hello-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .hello-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .hello-button:active {
+            transform: translateY(0);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .button-box {
+                padding: 30px 20px;
+            }
+            
+            .button-box h1 {
+                font-size: 20px;
+            }
+            
+            .hello-button {
+                font-size: 16px;
+                padding: 10px 25px;
+            }
+            
+            .message {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="button-box">
+        <h1>Hello Button</h1>
+        <button class="hello-button" onclick="sayHello()">Click Me!</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        function sayHello() {
+            const messageElement = document.getElementById('message');
+            const messages = [
+                'Hello! 👋',
+                'Hi there! 😊',
+                'Greetings! 🎉',
+                'Hey! Nice to see you! ✨',
+                'Hello again! 🌟'
+            ];
+            
+            // Get random message
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Show message
+            messageElement.textContent = randomMessage;
+            messageElement.classList.add('show');
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageElement.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
