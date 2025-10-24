@@ -33,6 +33,10 @@ class TodoApp {
             this.clearCompleted();
         });
 
+        document.getElementById('clear-all').addEventListener('click', () => {
+            this.clearAllTasks();
+        });
+
         document.getElementById('toggle-all').addEventListener('click', () => {
             this.toggleAll();
         });
@@ -244,6 +248,16 @@ class TodoApp {
         }
     }
 
+    clearAllTasks() {
+        const totalCount = this.todos.length;
+        if (totalCount > 0 && confirm(`Delete all ${totalCount} task(s)? This action cannot be undone.`)) {
+            this.todos = [];
+            this.saveTodos();
+            this.render();
+            this.updateStats();
+        }
+    }
+
     toggleAll() {
         const allCompleted = this.todos.every(todo => todo.completed);
         this.todos.forEach(todo => {
@@ -421,6 +435,7 @@ class TodoApp {
         
         // Update button states
         document.getElementById('clear-completed').disabled = completedCount === 0;
+        document.getElementById('clear-all').disabled = totalCount === 0;
         document.getElementById('toggle-all').disabled = totalCount === 0;
     }
 
