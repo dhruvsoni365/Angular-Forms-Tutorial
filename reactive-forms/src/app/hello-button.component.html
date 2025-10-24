@@ -1,0 +1,11 @@
+<div class="button-container">
+  <h2 class="title">Say Hello</h2>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="onHelloClick()"
+  >
+    Hello
+  </button>
+  <p class="message" *ngIf="greetingMessage">{{ greetingMessage }}</p>
+</div>
