@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="form-card">
+    <h2>User Registration</h2>
+    <p class="subtitle">Add name and mobile number</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="form-control"
+          [class.is-invalid]="submitted && name.invalid"
+          placeholder="Enter your name">
+
+        <div class="error-message" *ngIf="submitted && name.invalid">
+          <div *ngIf="name.errors?.required">Name is required</div>
+          <div *ngIf="name.errors?.minlength">Name must be at least 2 characters</div>
+          <div *ngIf="name.errors?.maxlength">Name cannot exceed 50 characters</div>
+          <div *ngIf="name.errors?.pattern">Name can only contain letters and spaces</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input
+          type="tel"
+          id="mobile"
+          formControlName="mobile"
+          class="form-control"
+          [class.is-invalid]="submitted && mobile.invalid"
+          placeholder="Enter mobile number">
+
+        <div class="error-message" *ngIf="submitted && mobile.invalid">
+          <div *ngIf="mobile.errors?.required">Mobile number is required</div>
+          <div *ngIf="mobile.errors?.pattern">Please enter a valid mobile number (10-15 digits)</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Add Entry</button>
+    </form>
+  </div>
+
+  <div class="table-card" *ngIf="userEntries.length > 0">
+    <div class="table-header">
+      <h3>Registered Users</h3>
+      <button type="button" class="btn-clear" (click)="clearAll()">Clear All</button>
+    </div>
+
+    <div class="table-container">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Mobile Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of userEntries; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ entry.name }}</td>
+            <td class="mobile-number">{{ entry.mobile }}</td>
+            <td>
+              <button type="button" class="btn-delete" (click)="deleteEntry(i)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-footer">
+      <p>Total entries: {{ userEntries.length }}</p>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="userEntries.length === 0">
+    <p>No entries yet. Add your first entry above!</p>
+  </div>
+</div>
