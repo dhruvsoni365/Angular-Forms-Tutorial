@@ -38,9 +38,14 @@
             font-size: 24px;
         }
 
-        .hello-button {
-            background-color: #007bff;
-            color: white;
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hello-button, .bye-button {
             border: none;
             padding: 12px 30px;
             font-size: 18px;
@@ -48,6 +53,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            color: white;
+        }
+
+        .hello-button {
+            background-color: #007bff;
         }
 
         .hello-button:hover {
@@ -56,7 +66,17 @@
             box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
         }
 
-        .hello-button:active {
+        .bye-button {
+            background-color: #dc3545;
+        }
+
+        .bye-button:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .hello-button:active, .bye-button:active {
             transform: translateY(0);
         }
 
@@ -84,9 +104,13 @@
                 font-size: 20px;
             }
             
-            .hello-button {
+            .hello-button, .bye-button {
                 font-size: 16px;
                 padding: 10px 25px;
+            }
+
+            .button-container {
+                gap: 10px;
             }
             
             .message {
@@ -97,8 +121,11 @@
 </head>
 <body>
     <div class="button-box">
-        <h1>Hello Button</h1>
-        <button class="hello-button" onclick="sayHello()">Click Me!</button>
+        <h1>Hello & Bye Buttons</h1>
+        <div class="button-container">
+            <button class="hello-button" onclick="sayHello()">Hello!</button>
+            <button class="bye-button" onclick="sayBye()">Bye!</button>
+        </div>
         <div class="message" id="message"></div>
     </div>
 
@@ -118,6 +145,33 @@
             
             // Show message
             messageElement.textContent = randomMessage;
+            messageElement.style.color = '#28a745'; // Green for hello messages
+            messageElement.classList.add('show');
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageElement.classList.remove('show');
+            }, 3000);
+        }
+
+        function sayBye() {
+            const messageElement = document.getElementById('message');
+            const messages = [
+                'Goodbye! 👋',
+                'See you later! 😊',
+                'Farewell! 🌅',
+                'Until next time! ✨',
+                'Take care! 🌟',
+                'Bye bye! 👋',
+                'Catch you later! 🎉'
+            ];
+            
+            // Get random message
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Show message
+            messageElement.textContent = randomMessage;
+            messageElement.style.color = '#dc3545'; // Red for bye messages
             messageElement.classList.add('show');
             
             // Hide message after 3 seconds
