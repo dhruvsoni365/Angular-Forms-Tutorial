@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details Form</title>
+    <link rel="stylesheet" href="personal-details.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <div class="form-card">
+                <h2 class="form-title">Personal Details Form</h2>
+                <form id="personalDetailsForm" novalidate>
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name *</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            class="form-input"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                        <span class="error-message" id="fullNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-input"
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            class="form-input"
+                            placeholder="Enter your phone number"
+                            required
+                        >
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="form-label">Address</label>
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            class="form-input"
+                            placeholder="Enter your address"
+                        >
+                        <span class="error-message" id="addressError"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group form-group-half">
+                            <label for="city" class="form-label">City</label>
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                class="form-input"
+                                placeholder="Enter your city"
+                            >
+                            <span class="error-message" id="cityError"></span>
+                        </div>
+
+                        <div class="form-group form-group-half">
+                            <label for="postalCode" class="form-label">Postal Code</label>
+                            <input
+                                type="text"
+                                id="postalCode"
+                                name="postalCode"
+                                class="form-input"
+                                placeholder="Enter postal code"
+                            >
+                            <span class="error-message" id="postalCodeError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="dateOfBirth"
+                            class="form-input"
+                        >
+                        <span class="error-message" id="dateOfBirthError"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" id="resetBtn">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+            <div class="table-card">
+                <h2 class="table-title">Submitted Personal Details</h2>
+                <div class="table-container">
+                    <table id="personalDetailsTable">
+                        <thead>
+                            <tr>
+                                <th class="index">#</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Postal Code</th>
+                                <th>Date of Birth</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr id="emptyRow">
+                                <td colspan="9" class="empty-message">No records to display. Submit the form to add personal details.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="personal-details.js"></script>
+</body>
+</html>
