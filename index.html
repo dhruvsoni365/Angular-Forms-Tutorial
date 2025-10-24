@@ -115,21 +115,40 @@
         .btn-clear {
             background-color: #dc3545;
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
-            margin-left: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
         }
 
         .btn-clear:hover {
             background-color: #c82333;
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-clear:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
         }
 
         .actions {
             text-align: center;
             margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .actions h3 {
+            margin: 0 0 10px 0;
+            color: #495057;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -156,7 +175,8 @@
     <div class="table-container">
         <h2>Contact List</h2>
         <div class="actions">
-            <button id="clearAll" class="btn-clear">Clear All Contacts</button>
+            <h3>Table Actions</h3>
+            <button id="clearAll" class="btn-clear">🗑️ Clear All Contacts</button>
         </div>
         
         <table id="contactTable">
@@ -237,7 +257,7 @@
                 <td>${contact.name}</td>
                 <td>${contact.mobile}</td>
                 <td>
-                    <button class="btn-clear" onclick="deleteContact(${contact.serialNo})">Delete</button>
+                    <button class="btn-clear" style="padding: 6px 12px; font-size: 12px;" onclick="deleteContact(${contact.serialNo})">🗑️ Delete</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -306,12 +326,20 @@
             // Update table
             updateTable();
             
+            // Save to localStorage
+            saveContacts();
+            
             // Clear form
             form.reset();
             
             // Show success message (optional)
             alert('Contact added successfully!');
         });
+
+        // Save contacts to localStorage
+        function saveContacts() {
+            localStorage.setItem('contacts', JSON.stringify(contacts));
+        }
 
         // Clear all contacts
         clearAllBtn.addEventListener('click', function() {
@@ -320,37 +348,40 @@
                 return;
             }
             
-            if (confirm('Are you sure you want to clear all contacts?')) {
+            if (confirm('Are you sure you want to clear all contacts? This action cannot be undone.')) {
                 contacts = [];
                 serialNumber = 1;
                 updateTable();
+                saveContacts(); // Save to localStorage
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('All contacts have been cleared successfully!');
+                }, 100);
             }
         });
 
-        // Load contacts from localStorage on page load (optional enhancement)
+        // Enhanced delete contact function with localStorage save
+        function deleteContact(serialNo) {
+            contacts = contacts.filter(contact => contact.serialNo !== serialNo);
+            updateTable();
+            saveContacts(); // Save after deleting
+        }
+
+        // Load contacts from localStorage on page load
         window.addEventListener('load', function() {
             const savedContacts = localStorage.getItem('contacts');
             if (savedContacts) {
-                contacts = JSON.parse(savedContacts);
-                serialNumber = contacts.length > 0 ? Math.max(...contacts.map(c => c.serialNo)) + 1 : 1;
-                updateTable();
+                try {
+                    contacts = JSON.parse(savedContacts);
+                    serialNumber = contacts.length > 0 ? Math.max(...contacts.map(c => c.serialNo)) + 1 : 1;
+                    updateTable();
+                } catch (error) {
+                    console.error('Error loading contacts from localStorage:', error);
+                    // Clear corrupted data
+                    localStorage.removeItem('contacts');
+                }
             }
-        });
-
-        // Save contacts to localStorage whenever contacts array changes
-        function saveContacts() {
-            localStorage.setItem('contacts', JSON.stringify(contacts));
-        }
-
-        // Override the original functions to include saving
-        const originalAddContact = form.addEventListener;
-        const originalDeleteContact = deleteContact;
-        const originalClearAll = clearAllBtn.addEventListener;
-
-        // Save data when adding contact
-        form.addEventListener('submit', function(e) {
-            // ... existing submit logic ...
-            setTimeout(saveContacts, 100);
         });
     </script>
 </body>
