@@ -38,8 +38,7 @@
             font-weight: 300;
         }
 
-        .hello-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .button {
             color: white;
             border: none;
             padding: 20px 40px;
@@ -48,8 +47,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin: 15px;
+            min-width: 150px;
+        }
+
+        .hello-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-            margin-bottom: 30px;
         }
 
         .hello-button:hover {
@@ -57,8 +61,26 @@
             box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
         }
 
-        .hello-button:active {
+        .bye-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .bye-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .button:active {
             transform: translateY(-1px);
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
         .message {
@@ -87,7 +109,7 @@
         }
 
         /* Animation for button click */
-        .hello-button.clicked {
+        .button.clicked {
             animation: pulse 0.6s ease-in-out;
         }
 
@@ -114,13 +136,20 @@
                 font-size: 2rem;
             }
             
-            .hello-button {
+            .button {
                 padding: 15px 30px;
                 font-size: 1.3rem;
+                margin: 10px 5px;
+                min-width: 130px;
             }
             
             .subtitle {
                 font-size: 1rem;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -128,8 +157,11 @@
 <body>
     <div class="container">
         <h1>Welcome!</h1>
-        <p class="subtitle">Click the button below to say hello</p>
-        <button id="helloBtn" class="hello-button">Hello! 👋</button>
+        <p class="subtitle">Click the buttons below to interact!</p>
+        <div class="buttons-container">
+            <button id="helloBtn" class="button hello-button">Hello! 👋</button>
+            <button id="byeBtn" class="button bye-button">Bye! 👋</button>
+        </div>
         <div id="message" class="message">
             Hello there! Nice to meet you! 🎉
         </div>
@@ -138,10 +170,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const helloButton = document.getElementById('helloBtn');
+            const byeButton = document.getElementById('byeBtn');
             const message = document.getElementById('message');
-            let clickCount = 0;
+            let helloClickCount = 0;
+            let byeClickCount = 0;
 
-            const messages = [
+            const helloMessages = [
                 "Hello there! Nice to meet you! 🎉",
                 "Hello again! Having fun? 😊",
                 "Hi there! You really like this button! 😄",
@@ -151,13 +185,23 @@
                 "Hello! You're a clicking champion! 🏆"
             ];
 
-            helloButton.addEventListener('click', function() {
+            const byeMessages = [
+                "Goodbye! See you later! 👋",
+                "Bye bye! Come back soon! 😊",
+                "Farewell! Until next time! 🌟",
+                "See ya! Take care! 💫",
+                "Goodbye! Thanks for visiting! 🎈",
+                "Bye! Hope to see you again! 🌈",
+                "Farewell! You're awesome! ✨"
+            ];
+
+            function showMessage(messages, clickCount, button) {
                 // Add click animation
-                helloButton.classList.add('clicked');
+                button.classList.add('clicked');
                 
                 // Remove animation class after animation completes
                 setTimeout(() => {
-                    helloButton.classList.remove('clicked');
+                    button.classList.remove('clicked');
                 }, 600);
 
                 // Show message with animation
@@ -168,8 +212,17 @@
                     const messageIndex = clickCount % messages.length;
                     message.textContent = messages[messageIndex];
                     message.classList.add('show');
-                    clickCount++;
                 }, 100);
+            }
+
+            helloButton.addEventListener('click', function() {
+                showMessage(helloMessages, helloClickCount, helloButton);
+                helloClickCount++;
+            });
+
+            byeButton.addEventListener('click', function() {
+                showMessage(byeMessages, byeClickCount, byeButton);
+                byeClickCount++;
             });
         });
     </script>
