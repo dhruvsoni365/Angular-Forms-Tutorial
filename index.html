@@ -3,35 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Button Selection</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hello-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hello-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Please Make Your Selection</h1>
-        
-        <form id="radioForm">
-            <div class="question">
-                <h2>Do you agree with the terms and conditions?</h2>
-                
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="yes" name="answer" value="yes">
-                        <label for="yes">Yes</label>
-                    </div>
-                    
-                    <div class="radio-option">
-                        <input type="radio" id="no" name="answer" value="no">
-                        <label for="no">No</label>
-                    </div>
-                </div>
-            </div>
-            
-            <button type="submit" class="submit-btn">Submit</button>
-            <div id="result" class="result"></div>
-        </form>
+    <div>
+        <button class="hello-button" onclick="sayHello()">Hello</button>
+        <div id="message" class="message">Hello there! 👋</div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script>
+        function sayHello() {
+            const message = document.getElementById('message');
+            message.classList.toggle('show');
+            
+            // Play a little animation
+            const button = document.querySelector('.hello-button');
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 100);
+        }
+    </script>
 </body>
 </html>
