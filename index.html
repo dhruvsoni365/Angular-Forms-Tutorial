@@ -3,35 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Button Selection</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Name and Email Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .form-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .form-section h2 {
+            color: #4f46e5;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        .table-section {
+            margin-top: 30px;
+        }
+
+        .table-section h2 {
+            color: #4f46e5;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background-color: #e2e8f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #6b7280;
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #ef4444;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .action-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Please Make Your Selection</h1>
+        <div class="header">
+            <h1>User Registration</h1>
+            <p>Enter your information and see it displayed in the table below</p>
+        </div>
         
-        <form id="radioForm">
-            <div class="question">
-                <h2>Do you agree with the terms and conditions?</h2>
+        <div class="content">
+            <div class="form-section">
+                <h2>Add New Entry</h2>
                 
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="yes" name="answer" value="yes">
-                        <label for="yes">Yes</label>
+                <div id="successMessage" class="success-message"></div>
+                <div id="errorMessage" class="error-message"></div>
+                
+                <form id="userForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
                     </div>
                     
-                    <div class="radio-option">
-                        <input type="radio" id="no" name="answer" value="no">
-                        <label for="no">No</label>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
                     </div>
-                </div>
+                    
+                    <button type="submit" class="btn">Add to Table</button>
+                </form>
             </div>
-            
-            <button type="submit" class="submit-btn">Submit</button>
-            <div id="result" class="result"></div>
-        </form>
+
+            <div class="table-section">
+                <h2>Submitted Entries</h2>
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date Added</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="5" class="no-data">No entries yet. Add your first entry using the form above!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script>
+        // Array to store user data
+        let userData = [];
+        let entryCounter = 0;
+
+        // Get DOM elements
+        const form = document.getElementById('userForm');
+        const tableBody = document.getElementById('tableBody');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Form submission handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            // Validate inputs
+            if (!name || !email) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Check for duplicate email
+            if (userData.some(user => user.email.toLowerCase() === email.toLowerCase())) {
+                showMessage('Email address already exists!', 'error');
+                return;
+            }
+            
+            // Create new user object
+            const newUser = {
+                id: ++entryCounter,
+                name: name,
+                email: email,
+                dateAdded: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+            };
+            
+            // Add to array
+            userData.push(newUser);
+            
+            // Update table
+            updateTable();
+            
+            // Clear form
+            form.reset();
+            
+            // Show success message
+            showMessage(`Successfully added ${name} to the table!`, 'success');
+        });
+
+        // Function to update the table
+        function updateTable() {
+            if (userData.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" class="no-data">No entries yet. Add your first entry using the form above!</td></tr>';
+                return;
+            }
+            
+            let html = '';
+            userData.forEach(user => {
+                html += `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${escapeHtml(user.name)}</td>
+                        <td>${escapeHtml(user.email)}</td>
+                        <td>${user.dateAdded}</td>
+                        <td><button class="action-btn" onclick="removeEntry(${user.id})">Remove</button></td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = html;
+        }
+
+        // Function to remove an entry
+        function removeEntry(id) {
+            if (confirm('Are you sure you want to remove this entry?')) {
+                userData = userData.filter(user => user.id !== id);
+                updateTable();
+                showMessage('Entry removed successfully!', 'success');
+            }
+        }
+
+        // Function to show messages
+        function showMessage(message, type) {
+            const messageEl = type === 'success' ? successMessage : errorMessage;
+            messageEl.textContent = message;
+            messageEl.style.display = 'block';
+            
+            // Hide other message type
+            const otherMessageEl = type === 'success' ? errorMessage : successMessage;
+            otherMessageEl.style.display = 'none';
+            
+            // Auto hide after 3 seconds
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 3000);
+        }
+
+        // Function to escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Load data from localStorage on page load
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('userFormData');
+            if (savedData) {
+                userData = JSON.parse(savedData);
+                if (userData.length > 0) {
+                    entryCounter = Math.max(...userData.map(u => u.id));
+                }
+                updateTable();
+            }
+        });
+
+        // Save data to localStorage whenever userData changes
+        function saveToStorage() {
+            localStorage.setItem('userFormData', JSON.stringify(userData));
+        }
+
+        // Override the original functions to include storage
+        const originalUpdateTable = updateTable;
+        updateTable = function() {
+            originalUpdateTable();
+            saveToStorage();
+        };
+
+        // Add clear all functionality
+        function clearAllEntries() {
+            if (confirm('Are you sure you want to clear all entries?')) {
+                userData = [];
+                entryCounter = 0;
+                updateTable();
+                showMessage('All entries cleared!', 'success');
+            }
+        }
+
+        // Add a clear all button after the table
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableSection = document.querySelector('.table-section');
+            const clearButton = document.createElement('button');
+            clearButton.textContent = 'Clear All Entries';
+            clearButton.className = 'btn';
+            clearButton.style.marginTop = '20px';
+            clearButton.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+            clearButton.onclick = clearAllEntries;
+            tableSection.appendChild(clearButton);
+        });
+    </script>
 </body>
 </html>
