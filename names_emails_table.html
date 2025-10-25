@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Names and Emails Table</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .table-container {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #f8f9fa;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #495057;
+        }
+
+        tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .index-cell {
+            font-weight: 600;
+            color: #667eea;
+            width: 60px;
+        }
+
+        .name-cell {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .email-cell {
+            color: #555;
+            font-family: 'Courier New', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .header p {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .table-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .index-cell {
+                width: 40px;
+            }
+
+            th, td {
+                padding: 8px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Names and Emails Directory</h1>
+            <p>Contact information for 5 users</p>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="index-cell">#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="index-cell">1</td>
+                        <td class="name-cell">Sarah Johnson</td>
+                        <td class="email-cell">sarah.johnson@email.com</td>
+                    </tr>
+                    <tr>
+                        <td class="index-cell">2</td>
+                        <td class="name-cell">Michael Chen</td>
+                        <td class="email-cell">michael.chen@email.com</td>
+                    </tr>
+                    <tr>
+                        <td class="index-cell">3</td>
+                        <td class="name-cell">Emily Rodriguez</td>
+                        <td class="email-cell">emily.rodriguez@email.com</td>
+                    </tr>
+                    <tr>
+                        <td class="index-cell">4</td>
+                        <td class="name-cell">David Patel</td>
+                        <td class="email-cell">david.patel@email.com</td>
+                    </tr>
+                    <tr>
+                        <td class="index-cell">5</td>
+                        <td class="name-cell">Jessica Williams</td>
+                        <td class="email-cell">jessica.williams@email.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
