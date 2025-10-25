@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hello-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .hello-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+        }
+        
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .message.show {
+            opacity: 1;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <button class="hello-button" onclick="sayHello()">Hello</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function sayHello() {
+            const messageDiv = document.getElementById('message');
+            const messages = [
+                'Hello there! 👋',
+                'Hi! How are you doing? 😊',
+                'Hello! Nice to meet you! 🌟',
+                'Hey! Hope you\'re having a great day! ✨',
+                'Hello! Welcome to our page! 🎉'
+            ];
+            
+            // Pick a random message
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Update message and show it
+            messageDiv.textContent = randomMessage;
+            messageDiv.classList.add('show');
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
