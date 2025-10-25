@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .hello-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .hello-button:hover {
+            background-color: #45a049;
+        }
+        
+        .hello-button:active {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <button class="hello-button" onclick="sayHello()">Hello</button>
+    
+    <script>
+        function sayHello() {
+            alert('Hello! 👋');
+        }
+    </script>
+</body>
+</html>
