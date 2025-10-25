@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Components Demo</title>
+    <link rel="stylesheet" href="button-styles.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        h2 {
+            color: #34495e;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3498db;
+            font-size: 1.5rem;
+        }
+
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            align-items: center;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .demo-code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        .feature-list {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .feature-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .accessibility-note {
+            background: #e8f5e8;
+            border: 1px solid #27ae60;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .accessibility-note h3 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .button-row {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Button Components Library</h1>
+        <p style="text-align: center; font-size: 1.2rem; color: #7f8c8d; margin-bottom: 3rem;">
+            A comprehensive collection of modern, accessible, and interactive button components
+        </p>
+
+        <!-- Basic Buttons -->
+        <div class="section">
+            <h2>Basic Button Variants</h2>
+            <div class="button-row">
+                <button class="btn btn-primary" onclick="handleButtonClick(this, 'success')">Primary</button>
+                <button class="btn btn-secondary" onclick="handleButtonClick(this, 'success')">Secondary</button>
+                <button class="btn btn-success" onclick="handleButtonClick(this, 'success')">Success</button>
+                <button class="btn btn-danger" onclick="handleButtonClick(this, 'error')">Danger</button>
+                <button class="btn btn-warning" onclick="handleButtonClick(this, 'success')">Warning</button>
+                <button class="btn btn-info" onclick="handleButtonClick(this, 'success')">Info</button>
+            </div>
+            
+            <div class="demo-code">
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;</div>
+        </div>
+
+        <!-- Outline Buttons -->
+        <div class="section">
+            <h2>Outline Button Variants</h2>
+            <div class="button-row">
+                <button class="btn btn-outline-primary" onclick="handleButtonClick(this, 'success')">Primary Outline</button>
+                <button class="btn btn-outline-secondary" onclick="handleButtonClick(this, 'success')">Secondary Outline</button>
+                <button class="btn btn-outline-success" onclick="handleButtonClick(this, 'success')">Success Outline</button>
+                <button class="btn btn-outline-danger" onclick="handleButtonClick(this, 'error')">Danger Outline</button>
+                <button class="btn btn-outline-warning" onclick="handleButtonClick(this, 'success')">Warning Outline</button>
+                <button class="btn btn-outline-info" onclick="handleButtonClick(this, 'success')">Info Outline</button>
+            </div>
+
+            <div class="demo-code">
+&lt;button class="btn btn-outline-primary"&gt;Primary Outline&lt;/button&gt;
+&lt;button class="btn btn-outline-success"&gt;Success Outline&lt;/button&gt;</div>
+        </div>
+
+        <!-- Button Sizes -->
+        <div class="section">
+            <h2>Button Sizes</h2>
+            <div class="button-row">
+                <button class="btn btn-primary btn-sm" onclick="handleButtonClick(this, 'success')">Small Button</button>
+                <button class="btn btn-primary" onclick="handleButtonClick(this, 'success')">Default Button</button>
+                <button class="btn btn-primary btn-lg" onclick="handleButtonClick(this, 'success')">Large Button</button>
+                <button class="btn btn-primary btn-xl" onclick="handleButtonClick(this, 'success')">Extra Large</button>
+            </div>
+
+            <div class="demo-code">
+&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;</div>
+        </div>
+
+        <!-- Special Styles -->
+        <div class="section">
+            <h2>Special Button Styles</h2>
+            <div class="button-row">
+                <button class="btn btn-primary btn-rounded" onclick="handleButtonClick(this, 'success')">Rounded Button</button>
+                <button class="btn btn-success btn-square" onclick="handleButtonClick(this, 'success')">Square Button</button>
+                <button class="btn btn-gradient" onclick="handleButtonClick(this, 'success')">Gradient Button</button>
+                <button class="btn btn-primary btn-ripple" onclick="handleButtonClick(this, 'success')">Ripple Effect</button>
+            </div>
+
+            <div class="demo-code">
+&lt;button class="btn btn-primary btn-rounded"&gt;Rounded&lt;/button&gt;
+&lt;button class="btn btn-gradient"&gt;Gradient&lt;/button&gt;
+&lt;button class="btn btn-primary btn-ripple"&gt;Ripple&lt;/button&gt;</div>
+        </div>
+
+        <!-- Interactive States -->
+        <div class="section">
+            <h2>Interactive States</h2>
+            <div class="button-row">
+                <button class="btn btn-primary" data-loading="true" onclick="handleButtonClick(this, 'loading')">Loading Demo</button>
+                <button class="btn btn-secondary" disabled>Disabled Button</button>
+                <button class="btn btn-success" data-tooltip="This is a helpful tooltip!" onclick="handleButtonClick(this, 'success')">Hover for Tooltip</button>
+            </div>
+
+            <div class="demo-code">
+&lt;button class="btn btn-primary" data-loading="true"&gt;Loading Demo&lt;/button&gt;
+&lt;button class="btn btn-secondary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button data-tooltip="Helpful tooltip!"&gt;Tooltip Button&lt;/button&gt;</div>
+        </div>
+
+        <!-- Icon Buttons -->
+        <div class="section">
+            <h2>Icon Buttons</h2>
+            <div class="button-row">
+                <button class="btn btn-primary btn-icon" onclick="handleButtonClick(this, 'success')">
+                    <span>📧</span> Email
+                </button>
+                <button class="btn btn-success btn-icon" onclick="handleButtonClick(this, 'success')">
+                    <span>💾</span> Save
+                </button>
+                <button class="btn btn-danger btn-icon" onclick="handleButtonClick(this, 'error')">
+                    <span>🗑️</span> Delete
+                </button>
+                <button class="btn btn-primary btn-icon-only" onclick="handleButtonClick(this, 'success')" data-tooltip="Settings">
+                    ⚙️
+                </button>
+                <button class="btn btn-info btn-icon-only btn-sm" onclick="handleButtonClick(this, 'success')" data-tooltip="Help">
+                    ❓
+                </button>
+            </div>
+
+            <div class="demo-code">
+&lt;button class="btn btn-primary btn-icon"&gt;
+    &lt;span&gt;📧&lt;/span&gt; Email
+&lt;/button&gt;
+&lt;button class="btn btn-primary btn-icon-only"&gt;⚙️&lt;/button&gt;</div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="section">
+            <h2>Action Buttons</h2>
+            <div class="button-row">
+                <button class="btn btn-info" onclick="handleButtonClick(this, 'copy')" data-copy-text="Hello, this text was copied from the button demo!">
+                    📋 Copy Text
+                </button>
+                <button class="btn btn-success" onclick="handleButtonClick(this, 'download')" 
+                        data-filename="demo.txt" 
+                        data-content="This is a sample file downloaded from the button demo!">
+                    📥 Download File
+                </button>
+                <button class="btn btn-primary" onclick="handleButtonClick(this, 'share')" 
+                        data-share-title="Button Components Demo"
+                        data-share-text="Check out this amazing button components library!"
+                        data-share-url="https://example.com">
+                    🔗 Share
+                </button>
+            </div>
+
+            <div class="demo-code">
+&lt;button class="btn btn-info" onclick="handleButtonClick(this, 'copy')" 
+        data-copy-text="Text to copy"&gt;Copy&lt;/button&gt;
+&lt;button class="btn btn-success" onclick="handleButtonClick(this, 'download')"&gt;Download&lt;/button&gt;</div>
+        </div>
+
+        <!-- Button Groups -->
+        <div class="section">
+            <h2>Button Groups</h2>
+            <p><strong>Single Selection Group:</strong></p>
+            <div class="btn-group" data-toggle="single">
+                <button class="btn btn-outline-primary active">Option 1</button>
+                <button class="btn btn-outline-primary">Option 2</button>
+                <button class="btn btn-outline-primary">Option 3</button>
+            </div>
+
+            <p style="margin-top: 2rem;"><strong>Multi-Selection Group:</strong></p>
+            <div class="btn-group">
+                <button class="btn btn-outline-secondary">Bold</button>
+                <button class="btn btn-outline-secondary">Italic</button>
+                <button class="btn btn-outline-secondary">Underline</button>
+            </div>
+
+            <div class="demo-code">
+&lt;div class="btn-group" data-toggle="single"&gt;
+    &lt;button class="btn btn-outline-primary active"&gt;Option 1&lt;/button&gt;
+    &lt;button class="btn btn-outline-primary"&gt;Option 2&lt;/button&gt;
+&lt;/div&gt;</div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="section">
+            <h2>Floating Action Button</h2>
+            <p>Look for the floating button in the bottom right corner of the page!</p>
+            <div class="demo-code">
+&lt;button class="btn btn-primary btn-fab"&gt;+&lt;/button&gt;</div>
+        </div>
+
+        <!-- Accessibility Features -->
+        <div class="accessibility-note">
+            <h3>♿ Accessibility Features</h3>
+            <div class="feature-list">
+                <ul>
+                    <li>Full keyboard navigation support (Tab, Enter, Space)</li>
+                    <li>Screen reader compatibility with ARIA labels</li>
+                    <li>High contrast mode support</li>
+                    <li>Reduced motion respect for animations</li>
+                    <li>Focus indicators for keyboard users</li>
+                    <li>Semantic HTML structure</li>
+                    <li>Proper color contrast ratios</li>
+                    <li>Loading state announcements</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Implementation Features -->
+        <div class="section">
+            <h2>🚀 Implementation Features</h2>
+            <div class="button-grid">
+                <div class="feature-list">
+                    <h3>🎨 Styling</h3>
+                    <ul>
+                        <li>CSS Custom Properties</li>
+                        <li>Responsive Design</li>
+                        <li>Dark Mode Support</li>
+                        <li>Print Styles</li>
+                        <li>Smooth Animations</li>
+                    </ul>
+                </div>
+                <div class="feature-list">
+                    <h3>⚡ Interactions</h3>
+                    <ul>
+                        <li>Ripple Effects</li>
+                        <li>Loading States</li>
+                        <li>Tooltip System</li>
+                        <li>Click Feedback</li>
+                        <li>Keyboard Support</li>
+                    </ul>
+                </div>
+                <div class="feature-list">
+                    <h3>🔧 Functionality</h3>
+                    <ul>
+                        <li>Copy to Clipboard</li>
+                        <li>File Downloads</li>
+                        <li>Social Sharing</li>
+                        <li>Form Validation</li>
+                        <li>Notifications</li>
+                    </ul>
+                </div>
+                <div class="feature-list">
+                    <h3>📱 Modern Features</h3>
+                    <ul>
+                        <li>Touch Gestures</li>
+                        <li>Web Share API</li>
+                        <li>Clipboard API</li>
+                        <li>CSS Grid/Flexbox</li>
+                        <li>ES6+ JavaScript</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Instructions -->
+        <div class="section">
+            <h2>📖 How to Use</h2>
+            <p>To use these buttons in your project:</p>
+            <div class="demo-code">
+1. Include the CSS file:
+   &lt;link rel="stylesheet" href="button-styles.css"&gt;
+
+2. Include the JavaScript file:
+   &lt;script src="button-interactions.js"&gt;&lt;/script&gt;
+
+3. Use the button classes:
+   &lt;button class="btn btn-primary"&gt;Your Button&lt;/button&gt;
+
+4. Add interactivity:
+   &lt;button class="btn btn-primary" onclick="handleButtonClick(this, 'success')"&gt;
+       Interactive Button
+   &lt;/button&gt;</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #eee;">
+            <p style="color: #7f8c8d;">
+                Created with ❤️ for modern web applications
+            </p>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="btn btn-primary btn-fab" onclick="handleButtonClick(this, 'success')" data-tooltip="Main Action">
+        ➕
+    </button>
+
+    <script src="button-interactions.js"></script>
+    <script>
+        // Demo-specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Button Components Demo loaded successfully!');
+            
+            // Add some demo-specific interactions
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    console.log(`Button ${index + 1} clicked:`, btn.textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
