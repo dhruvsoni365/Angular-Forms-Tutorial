@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .email {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .email:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Directory</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John Smith</td>
+                    <td><a href="mailto:john.smith@email.com" class="email">john.smith@email.com</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Sarah Johnson</td>
+                    <td><a href="mailto:sarah.johnson@email.com" class="email">sarah.johnson@email.com</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Michael Brown</td>
+                    <td><a href="mailto:michael.brown@email.com" class="email">michael.brown@email.com</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Emily Davis</td>
+                    <td><a href="mailto:emily.davis@email.com" class="email">emily.davis@email.com</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>David Wilson</td>
+                    <td><a href="mailto:david.wilson@email.com" class="email">david.wilson@email.com</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
