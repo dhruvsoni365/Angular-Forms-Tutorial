@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Hello Button</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .title {
+            font-size: 2rem;
+            color: #2d3436;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #636e72;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .hello-btn {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hello-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+            background: linear-gradient(135deg, #00a085 0%, #00b894 100%);
+        }
+        
+        .hello-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+        }
+        
+        .hello-btn:focus {
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3), 0 0 0 3px rgba(0, 184, 148, 0.2);
+        }
+        
+        .hello-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .hello-btn:hover::before {
+            left: 100%;
+        }
+        
+        .message {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            color: #00b894;
+            font-weight: 500;
+            min-height: 30px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .emoji {
+            font-size: 1.3rem;
+            margin: 0 8px;
+            display: inline-block;
+            animation: wave 1s ease-in-out;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+        
+        /* Ripple effect */
+        .hello-btn .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 1.5rem;
+            }
+            
+            .hello-btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Hello Button</h1>
+        <p class="subtitle">Click the button below to say hello!</p>
+        
+        <button class="hello-btn" onclick="sayHello()" aria-label="Click to say hello">
+            Hello
+        </button>
+        
+        <div class="message" id="message" aria-live="polite"></div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        
+        const messages = [
+            "Hello! 👋 Nice to meet you!",
+            "Hi there! 😊 Having a great day?",
+            "Hey! 🌟 You clicked again!",
+            "Hello friend! 🤗 Thanks for visiting!",
+            "Hi! 🎉 You're awesome!",
+            "Hello! 🌈 Keep clicking if you want!",
+            "Hey there! ✨ Hope you're smiling!",
+            "Hello! 🚀 You're on fire!"
+        ];
+        
+        function sayHello() {
+            clickCount++;
+            const messageElement = document.getElementById('message');
+            const button = document.querySelector('.hello-btn');
+            
+            // Add ripple effect
+            createRipple(event, button);
+            
+            // Remove previous message
+            messageElement.classList.remove('show');
+            
+            // Show new message after a short delay
+            setTimeout(() => {
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                messageElement.innerHTML = `<span class="emoji">${getRandomEmoji()}</span>${randomMessage}<span class="emoji">${getRandomEmoji()}</span>`;
+                messageElement.classList.add('show');
+            }, 150);
+            
+            // Add special effects for milestone clicks
+            if (clickCount === 10) {
+                setTimeout(() => {
+                    messageElement.innerHTML = '<span class="emoji">🎊</span>Wow! 10 clicks! You really like this button!<span class="emoji">🎊</span>';
+                }, 200);
+            } else if (clickCount === 25) {
+                setTimeout(() => {
+                    messageElement.innerHTML = '<span class="emoji">🏆</span>25 clicks! You\'re a clicking champion!<span class="emoji">🏆</span>';
+                }, 200);
+            }
+        }
+        
+        function getRandomEmoji() {
+            const emojis = ['👋', '😊', '🌟', '🎉', '🤗', '🌈', '✨', '🚀', '💫', '🎊', '🔥', '💖'];
+            return emojis[Math.floor(Math.random() * emojis.length)];
+        }
+        
+        function createRipple(event, button) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.classList.add('ripple');
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            button.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+        
+        // Keyboard support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                if (document.activeElement === document.querySelector('.hello-btn')) {
+                    event.preventDefault();
+                    sayHello();
+                }
+            }
+        });
+        
+        // Welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const messageElement = document.getElementById('message');
+                messageElement.innerHTML = '<span style="color: #636e72; font-size: 0.9rem;">👆 Ready when you are!</span>';
+                messageElement.classList.add('show');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
