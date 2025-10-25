@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hello-container {
+            text-align: center;
+            padding: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .hello-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+        
+        .hello-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hello-message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hello-message.show {
+            opacity: 1;
+        }
+        
+        .emoji {
+            font-size: 2em;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hello-container">
+            <h1>Welcome!</h1>
+            <p>Click the button below to get a friendly greeting:</p>
+            
+            <button id="helloButton" class="hello-button">
+                Hello 👋
+            </button>
+            
+            <div id="helloMessage" class="hello-message">
+                <!-- Message will appear here -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const helloButton = document.getElementById('helloButton');
+            const helloMessage = document.getElementById('helloMessage');
+            
+            const greetings = [
+                '👋 Hello there! Welcome!',
+                '🌟 Hello! Hope you have a great day!',
+                '😊 Hi! Nice to see you here!',
+                '🎉 Hello! Thanks for clicking!',
+                '💫 Hello and welcome! You're awesome!',
+                '🌈 Hi there! Hope you're doing well!',
+                '✨ Hello! Have a wonderful day!'
+            ];
+            
+            helloButton.addEventListener('click', function() {
+                // Random greeting selection
+                const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+                
+                // Hide message first
+                helloMessage.classList.remove('show');
+                
+                // Set new message and show it after a brief delay
+                setTimeout(() => {
+                    helloMessage.textContent = randomGreeting;
+                    helloMessage.classList.add('show');
+                }, 100);
+                
+                // Add a small bounce effect to button
+                helloButton.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    helloButton.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
