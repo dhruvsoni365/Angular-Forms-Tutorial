@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Button Component</title>
+    <link rel="stylesheet" href="button-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Button Component Collection</h1>
+        
+        <!-- Primary Buttons -->
+        <section class="button-section">
+            <h2>Primary Buttons</h2>
+            <button class="btn btn-primary" onclick="showMessage('Primary button clicked!')">
+                Primary Button
+            </button>
+            <button class="btn btn-primary btn-lg" onclick="showMessage('Large primary button clicked!')">
+                Large Primary
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="showMessage('Small primary button clicked!')">
+                Small Primary
+            </button>
+        </section>
+
+        <!-- Secondary Buttons -->
+        <section class="button-section">
+            <h2>Secondary Buttons</h2>
+            <button class="btn btn-secondary" onclick="showMessage('Secondary button clicked!')">
+                Secondary Button
+            </button>
+            <button class="btn btn-outline" onclick="showMessage('Outline button clicked!')">
+                Outline Button
+            </button>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="button-section">
+            <h2>Action Buttons</h2>
+            <button class="btn btn-success" onclick="showMessage('Success! ✅')">
+                Success
+            </button>
+            <button class="btn btn-warning" onclick="showMessage('Warning! ⚠️')">
+                Warning
+            </button>
+            <button class="btn btn-danger" onclick="showMessage('Danger! ❌')">
+                Danger
+            </button>
+            <button class="btn btn-info" onclick="showMessage('Info! ℹ️')">
+                Info
+            </button>
+        </section>
+
+        <!-- Special Effects Buttons -->
+        <section class="button-section">
+            <h2>Special Effects</h2>
+            <button class="btn btn-gradient" onclick="showMessage('Gradient button clicked! 🌈')">
+                Gradient Button
+            </button>
+            <button class="btn btn-neon" onclick="showMessage('Neon button clicked! ⚡')">
+                Neon Glow
+            </button>
+            <button class="btn btn-3d" onclick="showMessage('3D button clicked! 🎯')">
+                3D Effect
+            </button>
+        </section>
+
+        <!-- Icon Buttons -->
+        <section class="button-section">
+            <h2>Icon Buttons</h2>
+            <button class="btn btn-icon btn-primary" onclick="showMessage('Download started! ⬇️')">
+                <span class="icon">⬇️</span>
+                Download
+            </button>
+            <button class="btn btn-icon btn-success" onclick="showMessage('Saved! 💾')">
+                <span class="icon">💾</span>
+                Save
+            </button>
+            <button class="btn btn-icon btn-danger" onclick="showMessage('Deleted! 🗑️')">
+                <span class="icon">🗑️</span>
+                Delete
+            </button>
+        </section>
+
+        <!-- Loading and Disabled States -->
+        <section class="button-section">
+            <h2>Button States</h2>
+            <button class="btn btn-primary" id="loadingBtn" onclick="simulateLoading()">
+                Click to Load
+            </button>
+            <button class="btn btn-secondary" disabled>
+                Disabled Button
+            </button>
+        </section>
+
+        <!-- Toggle Button -->
+        <section class="button-section">
+            <h2>Toggle Button</h2>
+            <button class="btn btn-toggle" id="toggleBtn" onclick="toggleButton()">
+                Toggle Me
+            </button>
+        </section>
+
+        <!-- Message Display -->
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="button-script.js"></script>
+</body>
+</html>

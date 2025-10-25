@@ -1,0 +1,389 @@
+/* Enhanced Button Styles */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.button-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Base Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    text-align: center;
+    vertical-align: middle;
+    transform: translateZ(0);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+    z-index: 1;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    transform: translateY(2px) scale(0.98);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn:disabled:hover {
+    transform: none;
+}
+
+/* Size Variations */
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 18px;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.6);
+}
+
+/* Outline Button */
+.btn-outline {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Success Button */
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+}
+
+/* Warning Button */
+.btn-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    color: #212529;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.6);
+}
+
+/* Danger Button */
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.6);
+}
+
+/* Info Button */
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4);
+}
+
+.btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(23, 162, 184, 0.6);
+}
+
+/* Gradient Button */
+.btn-gradient {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+    background-size: 300% 300%;
+    color: white;
+    animation: gradientShift 3s ease infinite;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.6);
+}
+
+/* Neon Button */
+.btn-neon {
+    background: transparent;
+    color: #00ff41;
+    border: 2px solid #00ff41;
+    text-shadow: 0 0 10px #00ff41;
+    box-shadow: 
+        inset 0 0 10px rgba(0, 255, 65, 0.1),
+        0 0 10px rgba(0, 255, 65, 0.3);
+    position: relative;
+}
+
+.btn-neon:hover {
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: 
+        inset 0 0 20px rgba(0, 255, 65, 0.2),
+        0 0 20px rgba(0, 255, 65, 0.6),
+        0 0 40px rgba(0, 255, 65, 0.4);
+    text-shadow: 0 0 15px #00ff41;
+}
+
+/* 3D Button */
+.btn-3d {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    box-shadow: 
+        0 6px 0 #5a67d8,
+        0 12px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+}
+
+.btn-3d:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 9px 0 #5a67d8,
+        0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+.btn-3d:active {
+    transform: translateY(3px);
+    box-shadow: 
+        0 3px 0 #5a67d8,
+        0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon Buttons */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-icon .icon {
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+/* Toggle Button */
+.btn-toggle {
+    background: #6c757d;
+    color: white;
+    position: relative;
+}
+
+.btn-toggle.active {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.btn-toggle.active::after {
+    content: ' ✓';
+    font-weight: bold;
+}
+
+/* Loading Button */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Message Display */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(40, 167, 69, 0.9);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.message.show {
+    transform: translateX(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        margin: 4px;
+        font-size: 14px;
+    }
+    
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .btn-lg {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .container {
+        box-shadow: none;
+        background: white;
+    }
+    
+    .btn {
+        border: 1px solid #ccc;
+        box-shadow: none;
+        color: #333 !important;
+        background: white !important;
+    }
+}
