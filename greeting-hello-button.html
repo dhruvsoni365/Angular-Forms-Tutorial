@@ -71,7 +71,7 @@
             font-weight: 300;
         }
         
-        .hello-greeting-button {
+        .greeting-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -86,9 +86,20 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin: 10px;
         }
         
-        .hello-greeting-button::before {
+        .hello-greeting-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .bye-greeting-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+        
+        .greeting-button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -99,7 +110,7 @@
             transition: left 0.5s;
         }
         
-        .hello-greeting-button:hover::before {
+        .greeting-button:hover::before {
             left: 100%;
         }
         
@@ -109,9 +120,34 @@
             background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         }
         
-        .hello-greeting-button:active {
+        .bye-greeting-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+            background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
+        }
+        
+        .greeting-button:active {
             transform: translateY(-1px);
+        }
+        
+        .hello-greeting-button:active {
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .bye-greeting-button:active {
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .farewell-message {
+            color: #dc3545;
         }
         
         .greeting-message {
@@ -170,7 +206,7 @@
                 font-size: 1rem;
             }
             
-            .hello-greeting-button {
+            .greeting-button {
                 padding: 12px 28px;
                 font-size: 1rem;
             }
@@ -185,7 +221,7 @@
                 font-size: 1.8rem;
             }
             
-            .hello-greeting-button {
+            .greeting-button {
                 padding: 10px 25px;
                 font-size: 0.95rem;
             }
@@ -195,18 +231,26 @@
 <body>
     <div class="greeting-container">
         <h1 class="greeting-title">Welcome!</h1>
-        <p class="greeting-subtitle">Click the button below to receive a friendly greeting</p>
+        <p class="greeting-subtitle">Click the buttons below to receive a friendly greeting or farewell</p>
         
-        <button class="hello-greeting-button" onclick="showGreeting()">
-            Say Hello
-        </button>
+        <div class="button-container">
+            <button class="greeting-button hello-greeting-button" onclick="showGreeting()">
+                Say Hello
+            </button>
+            
+            <button class="greeting-button bye-greeting-button" onclick="showFarewell()">
+                Say Goodbye
+            </button>
+        </div>
         
         <div class="greeting-message" id="greetingMessage"></div>
         <div class="click-count" id="clickCount"></div>
     </div>
 
     <script>
-        let clickCounter = 0;
+        let helloClickCounter = 0;
+        let byeClickCounter = 0;
+        
         const greetings = [
             "Hello! 👋 Welcome to our site!",
             "Hi there! 😊 Great to see you!",
@@ -218,8 +262,53 @@
             "Greetings and salutations! ✨ You rock!"
         ];
         
+        const farewells = [
+            "Goodbye! 👋 Thanks for visiting!",
+            "See you later! 😊 Take care!",
+            "Farewell! 🌟 Until we meet again!",
+            "Bye bye! 🎉 Come back soon!",
+            "Catch you later! 👋 Stay awesome!",
+            "Adios! 🌈 Have a great day ahead!",
+            "So long! 🤗 It was nice having you!",
+            "Until next time! ✨ Peace out!"
+        ];
+        
         function showGreeting() {
-            clickCounter++;
+            helloClickCounter++;
+            const messageElement = document.getElementById('greetingMessage');
+            const countElement = document.getElementById('clickCount');
+            
+            // Remove show class first for animation reset
+            messageElement.classList.remove('show');
+            messageElement.classList.remove('farewell-message');
+            
+            // Small delay to ensure animation resets
+            setTimeout(() => {
+                // Get random greeting or use index based on click count
+                const greetingIndex = (helloClickCounter - 1) % greetings.length;
+                const greeting = greetings[greetingIndex];
+                
+                messageElement.innerHTML = `<span class="emoji-decoration">🎉</span>${greeting}<span class="emoji-decoration">🎉</span>`;
+                messageElement.classList.add('show');
+                
+                // Update click count
+                if (helloClickCounter === 1) {
+                    countElement.textContent = `First hello! Welcome aboard! 🚀`;
+                } else if (helloClickCounter <= 5) {
+                    countElement.textContent = `Hello #${helloClickCounter} - You're spreading joy! 🔥`;
+                } else if (helloClickCounter <= 10) {
+                    countElement.textContent = `Hello #${helloClickCounter} - You really love greeting people! 😄`;
+                } else {
+                    countElement.textContent = `Hello #${helloClickCounter} - You're a greeting champion! 🏆`;
+                }
+                
+                // Add some sparkle effect
+                addSparkleEffect('.hello-greeting-button');
+            }, 100);
+        }
+        
+        function showFarewell() {
+            byeClickCounter++;
             const messageElement = document.getElementById('greetingMessage');
             const countElement = document.getElementById('clickCount');
             
@@ -228,31 +317,32 @@
             
             // Small delay to ensure animation resets
             setTimeout(() => {
-                // Get random greeting or use index based on click count
-                const greetingIndex = (clickCounter - 1) % greetings.length;
-                const greeting = greetings[greetingIndex];
+                // Get random farewell or use index based on click count
+                const farewellIndex = (byeClickCounter - 1) % farewells.length;
+                const farewell = farewells[farewellIndex];
                 
-                messageElement.innerHTML = `<span class="emoji-decoration">🎉</span>${greeting}<span class="emoji-decoration">🎉</span>`;
+                messageElement.innerHTML = `<span class="emoji-decoration">👋</span>${farewell}<span class="emoji-decoration">👋</span>`;
                 messageElement.classList.add('show');
+                messageElement.classList.add('farewell-message');
                 
                 // Update click count
-                if (clickCounter === 1) {
-                    countElement.textContent = `First click! Welcome aboard! 🚀`;
-                } else if (clickCounter <= 5) {
-                    countElement.textContent = `Click #${clickCounter} - You're on a roll! 🔥`;
-                } else if (clickCounter <= 10) {
-                    countElement.textContent = `Click #${clickCounter} - You really like this button! 😄`;
+                if (byeClickCounter === 1) {
+                    countElement.textContent = `First goodbye! Don't be a stranger! 💫`;
+                } else if (byeClickCounter <= 5) {
+                    countElement.textContent = `Goodbye #${byeClickCounter} - Hope to see you again! ❤️`;
+                } else if (byeClickCounter <= 10) {
+                    countElement.textContent = `Goodbye #${byeClickCounter} - You're quite the farewell expert! 😊`;
                 } else {
-                    countElement.textContent = `Click #${clickCounter} - You're a clicking champion! 🏆`;
+                    countElement.textContent = `Goodbye #${byeClickCounter} - Master of farewells! 🌟`;
                 }
                 
-                // Add some sparkle effect (optional)
-                addSparkleEffect();
+                // Add some sparkle effect
+                addSparkleEffect('.bye-greeting-button');
             }, 100);
         }
         
-        function addSparkleEffect() {
-            const button = document.querySelector('.hello-greeting-button');
+        function addSparkleEffect(buttonSelector) {
+            const button = document.querySelector(buttonSelector);
             button.style.transform = 'translateY(-3px) scale(1.05)';
             
             setTimeout(() => {
@@ -272,7 +362,7 @@
         window.addEventListener('load', function() {
             setTimeout(() => {
                 const messageElement = document.getElementById('greetingMessage');
-                messageElement.innerHTML = '<span style="color: #666; font-size: 0.9rem;">👆 Click the button above for a friendly greeting!</span>';
+                messageElement.innerHTML = '<span style="color: #666; font-size: 0.9rem;">👆 Click the buttons above for a friendly greeting or farewell!</span>';
                 messageElement.classList.add('show');
             }, 1000);
         });
