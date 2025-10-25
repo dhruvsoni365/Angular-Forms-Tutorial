@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Showcase</title>
+    <link rel="stylesheet" href="buttons-style.css">
+</head>
+<body>
+    <div class="showcase-container">
+        <header class="header">
+            <h1>Button Showcase</h1>
+            <p>A comprehensive collection of button styles and interactions</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Primary Buttons Section -->
+            <section class="button-section">
+                <h2>Primary Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-primary btn-small">Small Primary</button>
+                    <button class="btn btn-primary btn-medium">Medium Primary</button>
+                    <button class="btn btn-primary btn-large">Large Primary</button>
+                    <button class="btn btn-primary btn-medium" disabled>Disabled</button>
+                </div>
+            </section>
+
+            <!-- Secondary Buttons Section -->
+            <section class="button-section">
+                <h2>Secondary Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-secondary btn-small">Small Secondary</button>
+                    <button class="btn btn-secondary btn-medium">Medium Secondary</button>
+                    <button class="btn btn-secondary btn-large">Large Secondary</button>
+                    <button class="btn btn-secondary btn-medium" disabled>Disabled</button>
+                </div>
+            </section>
+
+            <!-- Success Buttons Section -->
+            <section class="button-section">
+                <h2>Success Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-success btn-small">✓ Success Small</button>
+                    <button class="btn btn-success btn-medium">✓ Success Medium</button>
+                    <button class="btn btn-success btn-large">✓ Success Large</button>
+                    <button class="btn btn-success btn-medium" disabled>✓ Disabled</button>
+                </div>
+            </section>
+
+            <!-- Danger Buttons Section -->
+            <section class="button-section">
+                <h2>Danger Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-danger btn-small">⚠ Danger Small</button>
+                    <button class="btn btn-danger btn-medium">⚠ Danger Medium</button>
+                    <button class="btn btn-danger btn-large">⚠ Danger Large</button>
+                    <button class="btn btn-danger btn-medium" disabled>⚠ Disabled</button>
+                </div>
+            </section>
+
+            <!-- Warning Buttons Section -->
+            <section class="button-section">
+                <h2>Warning Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-warning btn-small">⚡ Warning Small</button>
+                    <button class="btn btn-warning btn-medium">⚡ Warning Medium</button>
+                    <button class="btn btn-warning btn-large">⚡ Warning Large</button>
+                    <button class="btn btn-warning btn-medium" disabled>⚡ Disabled</button>
+                </div>
+            </section>
+
+            <!-- Info Buttons Section -->
+            <section class="button-section">
+                <h2>Info Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-info btn-small">ℹ Info Small</button>
+                    <button class="btn btn-info btn-medium">ℹ Info Medium</button>
+                    <button class="btn btn-info btn-large">ℹ Info Large</button>
+                    <button class="btn btn-info btn-medium" disabled>ℹ Disabled</button>
+                </div>
+            </section>
+
+            <!-- Outline Buttons Section -->
+            <section class="button-section">
+                <h2>Outline Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-outline-primary btn-medium">Primary Outline</button>
+                    <button class="btn btn-outline-secondary btn-medium">Secondary Outline</button>
+                    <button class="btn btn-outline-success btn-medium">Success Outline</button>
+                    <button class="btn btn-outline-danger btn-medium">Danger Outline</button>
+                </div>
+            </section>
+
+            <!-- Icon Buttons Section -->
+            <section class="button-section">
+                <h2>Icon Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-icon btn-primary">
+                        <span class="icon">📝</span>
+                        Edit
+                    </button>
+                    <button class="btn btn-icon btn-success">
+                        <span class="icon">💾</span>
+                        Save
+                    </button>
+                    <button class="btn btn-icon btn-danger">
+                        <span class="icon">🗑️</span>
+                        Delete
+                    </button>
+                    <button class="btn btn-icon btn-info">
+                        <span class="icon">📋</span>
+                        Copy
+                    </button>
+                </div>
+            </section>
+
+            <!-- Floating Action Buttons Section -->
+            <section class="button-section">
+                <h2>Floating Action Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-fab btn-primary">+</button>
+                    <button class="btn btn-fab btn-secondary">♡</button>
+                    <button class="btn btn-fab btn-success">✓</button>
+                    <button class="btn btn-fab btn-danger">✕</button>
+                </div>
+            </section>
+
+            <!-- Toggle Buttons Section -->
+            <section class="button-section">
+                <h2>Toggle Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-toggle" data-toggle="false">Toggle Off</button>
+                    <button class="btn btn-toggle" data-toggle="true">Toggle On</button>
+                </div>
+            </section>
+
+            <!-- Loading Buttons Section -->
+            <section class="button-section">
+                <h2>Loading Buttons</h2>
+                <div class="button-grid">
+                    <button class="btn btn-primary btn-loading" data-loading="false">
+                        <span class="btn-text">Load Data</span>
+                        <span class="btn-spinner">⟳</span>
+                    </button>
+                    <button class="btn btn-success btn-loading" data-loading="true">
+                        <span class="btn-text">Processing...</span>
+                        <span class="btn-spinner">⟳</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Interactive Demo Section -->
+            <section class="button-section demo-section">
+                <h2>Interactive Demo</h2>
+                <div class="demo-container">
+                    <button class="btn btn-primary btn-medium" id="demoButton">Click Me!</button>
+                    <div class="demo-output">
+                        <p id="clickCount">Clicks: 0</p>
+                        <p id="lastClicked">Last clicked: Never</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Button Groups Section -->
+            <section class="button-section">
+                <h2>Button Groups</h2>
+                <div class="button-group">
+                    <button class="btn btn-outline-primary">Left</button>
+                    <button class="btn btn-outline-primary">Center</button>
+                    <button class="btn btn-outline-primary">Right</button>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary">First</button>
+                    <button class="btn btn-secondary">Second</button>
+                    <button class="btn btn-secondary">Third</button>
+                    <button class="btn btn-secondary">Fourth</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Button Showcase. All styles and interactions included.</p>
+        </footer>
+    </div>
+
+    <script src="buttons-script.js"></script>
+</body>
+</html>
