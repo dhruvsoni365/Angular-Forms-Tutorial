@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWER Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .qwer-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qwer-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .qwer-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        .qwer-button:hover::before {
+            left: 100%;
+        }
+        
+        .qwer-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .qwer-button:focus {
+            outline: none;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6), 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .message {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QWER Button Component</h1>
+        <p>Interactive button with custom styling and animations</p>
+        <button class="qwer-button" onclick="handleQwerClick()" aria-label="QWER Button">
+            QWER
+        </button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function handleQwerClick() {
+            const message = document.getElementById('message');
+            const button = document.querySelector('.qwer-button');
+            
+            // Add click animation
+            button.style.transform = 'translateY(-1px) scale(0.98)';
+            
+            // Show success message
+            message.textContent = 'QWER button activated! ✨';
+            message.className = 'message success show';
+            
+            // Reset button animation
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+            
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' || event.code === 'Enter') {
+                const button = document.querySelector('.qwer-button');
+                if (document.activeElement === button) {
+                    event.preventDefault();
+                    handleQwerClick();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
