@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .hello-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .hello-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button class="hello-button" onclick="sayHello()">Hello</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function sayHello() {
+            const messageDiv = document.getElementById('message');
+            const messages = [
+                'Hello there! 👋',
+                'Hi! Nice to see you! 😊',
+                'Hello! How are you today? 🌟',
+                'Hey! Thanks for clicking! 💫',
+                'Hello world! 🌍'
+            ];
+            
+            // Get a random message
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Show the message
+            messageDiv.textContent = randomMessage;
+            messageDiv.classList.add('show');
+            
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
