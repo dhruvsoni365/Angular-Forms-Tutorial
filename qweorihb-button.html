@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button qweorihb</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .qweorihb-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qweorihb-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .qweorihb-button:hover:before {
+            left: 100%;
+        }
+        
+        .qweorihb-button:hover {
+            background: linear-gradient(45deg, #ff5252, #d32f2f);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .qweorihb-button:active {
+            transform: translateY(0px);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .qweorihb-button.clicked {
+            animation: pulse 0.6s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        
+        .message {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            min-height: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .click-counter {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Button qweorihb</h1>
+        <p class="subtitle">A uniquely named interactive button</p>
+        <button class="qweorihb-button" id="qweorihbButton" onclick="handleQweorihbClick()">
+            qweorihb
+        </button>
+        <div id="message" class="message"></div>
+        <div id="clickCounter" class="click-counter">Clicks: 0</div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const messages = [
+            'qweorihb button activated! 🚀',
+            'Amazing! You clicked qweorihb again! ✨',
+            'qweorihb is working perfectly! 🎉',
+            'Keep clicking that qweorihb button! 💫',
+            'qweorihb button mastery achieved! 🏆',
+            'You\'re a qweorihb clicking champion! 👑'
+        ];
+        
+        function handleQweorihbClick() {
+            const button = document.getElementById('qweorihbButton');
+            const message = document.getElementById('message');
+            const counter = document.getElementById('clickCounter');
+            
+            // Increment click count
+            clickCount++;
+            
+            // Add clicked animation
+            button.classList.add('clicked');
+            setTimeout(() => {
+                button.classList.remove('clicked');
+            }, 600);
+            
+            // Show success message
+            const randomMessage = messages[Math.min(clickCount - 1, messages.length - 1)];
+            message.textContent = randomMessage;
+            message.className = 'message success';
+            
+            // Update counter
+            counter.textContent = `Clicks: ${clickCount}`;
+            
+            // Add some special effects for milestone clicks
+            if (clickCount === 5) {
+                showSpecialEffect();
+            } else if (clickCount === 10) {
+                showUltimateEffect();
+            }
+            
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                message.textContent = '';
+                message.className = 'message';
+            }, 3000);
+        }
+        
+        function showSpecialEffect() {
+            const container = document.querySelector('.container');
+            container.style.animation = 'none';
+            container.offsetHeight; // Trigger reflow
+            container.style.animation = 'pulse 0.8s ease-in-out';
+            
+            setTimeout(() => {
+                container.style.animation = '';
+            }, 800);
+        }
+        
+        function showUltimateEffect() {
+            const body = document.body;
+            const originalBackground = body.style.background;
+            
+            body.style.background = 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7)';
+            body.style.backgroundSize = '300% 300%';
+            body.style.animation = 'gradient 2s ease infinite';
+            
+            setTimeout(() => {
+                body.style.background = originalBackground;
+                body.style.animation = '';
+            }, 2000);
+        }
+        
+        // Add gradient animation for special effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes gradient {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
