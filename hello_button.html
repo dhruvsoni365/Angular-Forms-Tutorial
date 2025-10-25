@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        
+        .hello-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .hello-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button class="hello-button" onclick="sayHello()">Hello</button>
+        <div id="message" class="message"></div>
+    </div>
+    
+    <script>
+        function sayHello() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = '👋 Hello there! Nice to meet you!';
+            
+            // Add a little animation
+            messageDiv.style.opacity = '0';
+            setTimeout(() => {
+                messageDiv.style.transition = 'opacity 0.5s ease-in-out';
+                messageDiv.style.opacity = '1';
+            }, 100);
+        }
+    </script>
+</body>
+</html>
