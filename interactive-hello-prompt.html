@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Hello Prompt Button</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 12s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .app-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 600px;
+            width: 100%;
+            animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .hello-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+        }
+
+        .hello-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .hello-button:hover::before {
+            left: 100%;
+        }
+
+        .hello-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+        }
+
+        .hello-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .conversation-area {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            min-height: 200px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .conversation-area.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            line-height: 1.5;
+            animation: messageSlide 0.4s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: linear-gradient(135deg, #e2e8f0, #f8fafc);
+            color: #334155;
+            border-left: 4px solid #667eea;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            margin-left: 40px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .user-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .user-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .send-button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            margin-left: 10px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            margin: 0 2px;
+            animation: typingPulse 1.4s infinite ease-in-out;
+        }
+
+        .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingPulse {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .hello-button {
+                padding: 14px 30px;
+                font-size: 1.1rem;
+            }
+
+            .input-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .send-button {
+                width: 100%;
+                padding: 12px;
+            }
+
+            .user-message {
+                margin-left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .conversation-area {
+                padding: 20px 15px;
+            }
+
+            .user-message {
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h1 class="title">Hello Prompt</h1>
+        <p class="subtitle">Click the button below to start an interactive conversation!</p>
+        
+        <button class="hello-button" onclick="startConversation()" id="mainButton">
+            👋 Start Hello Chat
+        </button>
+
+        <div class="conversation-area" id="conversationArea">
+            <div id="messages"></div>
+            <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                Bot is typing<div class="typing-dots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="input-container">
+                <input type="text" class="user-input" id="userInput" placeholder="Type your message here..." maxlength="200">
+                <button class="send-button" onclick="sendMessage()" id="sendButton">Send</button>
+            </div>
+        </div>
+
+        <div class="stats" id="stats">
+            Ready to chat! Click the button to begin.
+        </div>
+    </div>
+
+    <script>
+        let conversationStarted = false;
+        let messageCount = 0;
+        let userName = '';
+        let conversationHistory = [];
+        let botResponses = [
+            "That's really interesting! Tell me more about that. 🤔",
+            "I love hearing about that! What's your favorite part? 😊",
+            "Wow, thanks for sharing! How did you get into that? 🌟",
+            "That sounds amazing! What would you recommend to someone new? 💡",
+            "I'm learning so much from you! What else would you like to talk about? 🎯",
+            "That's fascinating! Do you have any funny stories about that? 😄",
+            "Thanks for chatting with me! What's something that made you smile today? 🌈",
+            "You seem really passionate about that! What inspired you? ✨"
+        ];
+
+        function startConversation() {
+            if (!conversationStarted) {
+                conversationStarted = true;
+                document.getElementById('conversationArea').classList.add('show');
+                document.getElementById('mainButton').textContent = '💬 Continue Chatting';
+                
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addBotMessage("Hello there! 👋 I'm excited to chat with you! What's your name?");
+                    updateStats();
+                    focusInput();
+                }, 1500);
+            } else {
+                // If conversation already started, just focus the input
+                focusInput();
+                addBotMessage("I'm still here! What would you like to talk about? 😊");
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addUserMessage(message);
+                input.value = '';
+                messageCount++;
+                
+                // Store the conversation
+                conversationHistory.push({ type: 'user', message: message });
+                
+                // Handle special cases
+                if (messageCount === 1 && !userName) {
+                    userName = message;
+                    showTypingIndicator();
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        addBotMessage(`Nice to meet you, ${userName}! 🎉 What's something you're excited about today?`);
+                        updateStats();
+                    }, 1200);
+                } else if (message.toLowerCase().includes('bye') || message.toLowerCase().includes('goodbye')) {
+                    showTypingIndicator();
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        addBotMessage(`It was wonderful chatting with you${userName ? ', ' + userName : ''}! 👋 Come back anytime for another conversation! ✨`);
+                        updateStats();
+                    }, 1000);
+                } else {
+                    // Generate contextual response
+                    showTypingIndicator();
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        const response = generateResponse(message);
+                        addBotMessage(response);
+                        updateStats();
+                    }, Math.random() * 1000 + 800); // Random delay between 800-1800ms
+                }
+            }
+        }
+
+        function generateResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            // Context-aware responses
+            if (msg.includes('happy') || msg.includes('excited') || msg.includes('great')) {
+                return "That's wonderful! 🌟 Your positive energy is contagious! What's making you feel so good?";
+            } else if (msg.includes('sad') || msg.includes('tired') || msg.includes('bad')) {
+                return "I'm sorry to hear that. 💙 Sometimes talking helps. What's been on your mind?";
+            } else if (msg.includes('work') || msg.includes('job')) {
+                return "Work life can be quite a journey! 💼 What do you enjoy most about what you do?";
+            } else if (msg.includes('food') || msg.includes('eat')) {
+                return "Yum! 🍕 I love hearing about food! What's your favorite dish or cuisine?";
+            } else if (msg.includes('music') || msg.includes('song')) {
+                return "Music is amazing! 🎵 What genre or artist has been stuck in your head lately?";
+            } else if (msg.includes('travel') || msg.includes('vacation')) {
+                return "Travel stories are the best! ✈️ Where's the most interesting place you've been or want to visit?";
+            } else {
+                // Use random response from the pool
+                const randomIndex = Math.floor(Math.random() * botResponses.length);
+                return botResponses[randomIndex];
+            }
+        }
+
+        function addUserMessage(message) {
+            const messagesContainer = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = message;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(message) {
+            const messagesContainer = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = message;
+            messagesContainer.appendChild(messageDiv);
+            
+            // Store bot response
+            conversationHistory.push({ type: 'bot', message: message });
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'flex';
+            document.getElementById('sendButton').disabled = true;
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'none';
+            document.getElementById('sendButton').disabled = false;
+        }
+
+        function scrollToBottom() {
+            const conversationArea = document.getElementById('conversationArea');
+            conversationArea.scrollTop = conversationArea.scrollHeight;
+        }
+
+        function updateStats() {
+            const statsElement = document.getElementById('stats');
+            if (messageCount === 0) {
+                statsElement.textContent = 'Ready to chat! Click the button to begin.';
+            } else if (messageCount === 1) {
+                statsElement.textContent = `Great start! You've sent ${messageCount} message. Keep the conversation going! 🚀`;
+            } else {
+                statsElement.textContent = `Awesome conversation! You've exchanged ${messageCount} messages. ${userName ? `Thanks for chatting, ${userName}!` : 'Thanks for chatting!'} 💬`;
+            }
+        }
+
+        function focusInput() {
+            setTimeout(() => {
+                document.getElementById('userInput').focus();
+            }, 100);
+        }
+
+        // Enter key functionality
+        document.getElementById('userInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Add some startup animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelector('.title').style.animation = 'none';
+                document.querySelector('.title').style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    document.querySelector('.title').style.transform = 'scale(1)';
+                }, 200);
+            }, 500);
+        });
+
+        // Prevent empty message submission
+        document.getElementById('userInput').addEventListener('input', function() {
+            const sendButton = document.getElementById('sendButton');
+            if (this.value.trim()) {
+                sendButton.style.opacity = '1';
+                sendButton.disabled = false;
+            } else {
+                sendButton.style.opacity = '0.5';
+                sendButton.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>
