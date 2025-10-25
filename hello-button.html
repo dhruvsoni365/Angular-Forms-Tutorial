@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hello-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hello-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .message.show {
+            opacity: 1;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Click the Button!</h1>
+        <button class="hello-button" onclick="sayHello()">Hello</button>
+        <div id="message" class="message"></div>
+    </div>
+    
+    <script>
+        function sayHello() {
+            const messageDiv = document.getElementById('message');
+            const messages = [
+                'Hello there! 👋',
+                'Greetings! 🌟',
+                'Hello, wonderful person! ✨',
+                'Hi! Nice to meet you! 😊',
+                'Hello! Hope you have a great day! 🌞'
+            ];
+            
+            // Pick a random message
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Display the message with animation
+            messageDiv.textContent = randomMessage;
+            messageDiv.classList.add('show');
+            
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
