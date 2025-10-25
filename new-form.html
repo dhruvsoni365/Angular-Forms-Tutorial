@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Form</title>
+    <link rel="stylesheet" href="new-form-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>New Form</h1>
+            <p class="form-description">Please fill out the form below</p>
+
+            <form id="newForm" class="new-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                        minlength="2"
+                        maxlength="50"
+                    >
+                    <span class="error-message" id="nameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        placeholder="Enter your message"
+                        required
+                        minlength="10"
+                        maxlength="500"
+                    ></textarea>
+                    <span class="error-message" id="messageError"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="reset" class="reset-btn">Clear</button>
+                </div>
+
+                <div id="successMessage" class="success-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="new-form-script.js"></script>
+</body>
+</html>
