@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Hellllooo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .hello-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+        
+        .hello-button:hover {
+            background: linear-gradient(45deg, #ff5252, #d63031);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(238, 90, 36, 0.3);
+        }
+        
+        .message {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            min-height: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .message.show {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            color: #2d3436;
+            transform: scale(1.05);
+        }
+        
+        .emoji {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎈 Button Demo</h1>
+        <p>Click the button below to say hello!</p>
+        
+        <button class="hello-button" onclick="sayHello()">hellllooo</button>
+        
+        <div class="emoji" id="emoji"></div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const emojis = ['👋', '🎉', '🌟', '✨', '🎊', '🚀', '💫', '🎯'];
+        
+        function sayHello() {
+            clickCount++;
+            const messageEl = document.getElementById('message');
+            const emojiEl = document.getElementById('emoji');
+            
+            // Show random emoji
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            emojiEl.textContent = randomEmoji;
+            
+            // Show message with click count
+            let message = '';
+            if (clickCount === 1) {
+                message = 'Hellllooo there! 👋';
+            } else if (clickCount <= 5) {
+                message = `Hellllooo again! (Click #${clickCount})`;
+            } else if (clickCount <= 10) {
+                message = `You really like this button! (Click #${clickCount})`;
+            } else {
+                message = `WOW! ${clickCount} clicks! You're amazing! 🎉`;
+            }
+            
+            messageEl.textContent = message;
+            messageEl.classList.add('show');
+            
+            // Animate the button
+            const button = document.querySelector('.hello-button');
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Clear message after 3 seconds
+            setTimeout(() => {
+                messageEl.classList.remove('show');
+                messageEl.textContent = '';
+                emojiEl.textContent = '';
+            }, 3000);
+        }
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                sayHello();
+            }
+        });
+    </script>
+</body>
+</html>
