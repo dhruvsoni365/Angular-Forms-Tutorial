@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hello-button {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+        }
+        
+        .hello-button:hover {
+            background: #00a085;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+        }
+        
+        .hello-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0, 184, 148, 0.3);
+        }
+        
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #2d3436;
+            min-height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Hello Button</h1>
+        <button class="hello-button" onclick="sayHello()">Hello</button>
+        <div class="message" id="message"></div>
+    </div>
+    
+    <script>
+        function sayHello() {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = 'Hello! 👋 Nice to meet you!';
+            messageElement.style.color = '#00b894';
+        }
+    </script>
+</body>
+</html>
