@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Button</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .hello-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .hello-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .hello-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            color: #333;
+            font-size: 1.1rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hello-btn {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <button class="hello-btn" onclick="sayHello()">Hello</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        function sayHello() {
+            const messages = [
+                "Hello there! 👋",
+                "Hi! Nice to meet you! 😊",
+                "Hello! Hope you're having a great day! ✨",
+                "Hey! Thanks for clicking the button! 🎉",
+                "Hello world! 🌍"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageDiv = document.getElementById('message');
+            
+            messageDiv.textContent = randomMessage;
+            messageDiv.style.display = 'block';
+            
+            // Add a little animation effect
+            messageDiv.style.animation = 'none';
+            messageDiv.offsetHeight; // Trigger reflow
+            messageDiv.style.animation = 'fadeIn 0.5s ease';
+        }
+    </script>
+</body>
+</html>
