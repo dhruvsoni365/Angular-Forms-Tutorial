@@ -67,7 +67,9 @@ export class UserFormComponent implements OnInit {
   private markFormGroupTouched(): void {
     Object.keys(this.userForm.controls).forEach(key => {
       const control = this.userForm.get(key);
-      control?.markAsTouched();
+      if (control) {
+        control.markAsTouched();
+      }
     });
   }
 

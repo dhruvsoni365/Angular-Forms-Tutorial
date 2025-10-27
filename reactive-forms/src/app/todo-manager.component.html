@@ -1,0 +1,152 @@
+<div class="todo-container">
+  <div class="todo-header">
+    <h1>Todo Manager</h1>
+    <p class="subtitle">Organize your tasks efficiently</p>
+  </div>
+
+  <!-- Todo Form -->
+  <div class="todo-form-card">
+    <h2>{{ editingTodo ? 'Edit Todo' : 'Add New Todo' }}</h2>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title *</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Enter todo title"
+          [class.error]="title?.invalid && title?.touched"
+        />
+        <div class="error-message" *ngIf="title?.invalid && title?.touched">
+          <small *ngIf="title?.errors?.['required']">Title is required</small>
+          <small *ngIf="title?.errors?.['minlength']">
+            Title must be at least 3 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Enter todo description (optional)"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="todoForm.invalid">
+          {{ editingTodo ? 'Update Todo' : 'Add Todo' }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          *ngIf="editingTodo"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Filter and Stats -->
+  <div class="filter-stats-bar">
+    <div class="filter-buttons">
+      <button
+        class="filter-btn"
+        [class.active]="filterMode === 'all'"
+        (click)="setFilter('all')"
+      >
+        All ({{ totalCount }})
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="filterMode === 'active'"
+        (click)="setFilter('active')"
+      >
+        Active ({{ activeCount }})
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="filterMode === 'completed'"
+        (click)="setFilter('completed')"
+      >
+        Completed ({{ completedCount }})
+      </button>
+    </div>
+
+    <div class="bulk-actions" *ngIf="totalCount > 0">
+      <button
+        class="btn btn-danger-outline"
+        *ngIf="completedCount > 0"
+        (click)="deleteCompleted()"
+      >
+        Delete Completed
+      </button>
+      <button class="btn btn-danger-outline" (click)="clearAll()">
+        Clear All
+      </button>
+    </div>
+  </div>
+
+  <!-- Todo List -->
+  <div class="todo-list">
+    <div *ngIf="filteredTodos.length === 0" class="empty-state">
+      <p *ngIf="filterMode === 'all'">No todos yet. Add one to get started!</p>
+      <p *ngIf="filterMode === 'active'">No active todos. Great job!</p>
+      <p *ngIf="filterMode === 'completed'">No completed todos yet.</p>
+    </div>
+
+    <div
+      *ngFor="let todo of filteredTodos; trackBy: trackByTodoId"
+      class="todo-item"
+      [class.completed]="todo.completed"
+      [class.editing]="editingTodo && editingTodo.id === todo.id"
+    >
+      <div class="todo-checkbox">
+        <input
+          type="checkbox"
+          [id]="'todo-' + todo.id"
+          [checked]="todo.completed"
+          (change)="toggleComplete(todo.id)"
+        />
+        <label [for]="'todo-' + todo.id"></label>
+      </div>
+
+      <div class="todo-content">
+        <h3 class="todo-title">{{ todo.title }}</h3>
+        <p class="todo-description" *ngIf="todo.description">
+          {{ todo.description }}
+        </p>
+        <div class="todo-meta">
+          <span class="todo-date">
+            Created: {{ todo.createdAt | date: 'short' }}
+          </span>
+          <span class="todo-date" *ngIf="todo.updatedAt > todo.createdAt">
+            Updated: {{ todo.updatedAt | date: 'short' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="todo-actions">
+        <button
+          class="btn-icon btn-edit"
+          (click)="editTodo(todo)"
+          title="Edit"
+          [disabled]="editingTodo && editingTodo.id !== todo.id"
+        >
+          Edit
+        </button>
+        <button
+          class="btn-icon btn-delete"
+          (click)="deleteTodo(todo.id)"
+          title="Delete"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

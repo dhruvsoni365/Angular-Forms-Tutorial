@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form.component';
+import { TodoManagerComponent } from './todo-manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserFormComponent
+    UserFormComponent,
+    TodoManagerComponent
   ],
   imports: [
     BrowserModule,
