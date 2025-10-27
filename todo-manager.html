@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Manager - CRUD Operations</title>
+    <link rel="stylesheet" href="todo-manager.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Todo Manager</h1>
+            <p class="subtitle">Organize your tasks efficiently</p>
+        </header>
+
+        <!-- Add Todo Form -->
+        <div class="add-todo-section">
+            <form id="todoForm">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="todoTitle" 
+                        placeholder="What needs to be done?" 
+                        required
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="form-group">
+                    <textarea 
+                        id="todoDescription" 
+                        placeholder="Add a description (optional)" 
+                        rows="2"
+                    ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-icon">+</span> Add Todo
+                </button>
+            </form>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <div class="todo-stats">
+                <span id="todoCount">0 tasks</span>
+            </div>
+        </div>
+
+        <!-- Todo List -->
+        <div class="todo-list" id="todoList">
+            <!-- Todos will be dynamically inserted here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📋</div>
+            <h3>No todos yet</h3>
+            <p>Add your first task to get started!</p>
+        </div>
+
+        <!-- Clear Completed Button -->
+        <div class="footer-actions" id="footerActions" style="display: none;">
+            <button class="btn btn-secondary" id="clearCompleted">
+                Clear Completed
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Todo</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editTitle">Title</label>
+                    <input 
+                        type="text" 
+                        id="editTitle" 
+                        required
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <textarea 
+                        id="editDescription" 
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="todo-manager.js"></script>
+</body>
+</html>
