@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evermore - Daily Discovery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 75%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .iphone-frame {
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 1000;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #8b5cf6 0%, #ec4899 50%, #f97316 100%);
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .time {
+            font-weight: 600;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .header {
+            padding: 20px 20px 15px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .feed-container {
+            height: calc(100% - 180px);
+            overflow-y: auto;
+            padding: 0 20px 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .feed-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cafe-card {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cafe-card:active {
+            transform: scale(0.98);
+        }
+
+        .cafe-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .cafe-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8b5cf6;
+        }
+
+        .cafe-info {
+            padding: 16px;
+        }
+
+        .cafe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 8px;
+        }
+
+        .cafe-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .cafe-distance {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 16px;
+        }
+
+        .rating-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .cafe-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #f3e7ff 0%, #fce7f3 100%);
+            color: #8b5cf6;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 12px 20px 30px;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #9ca3af;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .nav-item.active {
+            color: #8b5cf6;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cafe-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .cafe-card:nth-child(1) { animation-delay: 0.1s; }
+        .cafe-card:nth-child(2) { animation-delay: 0.2s; }
+        .cafe-card:nth-child(3) { animation-delay: 0.3s; }
+        .cafe-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="notch"></div>
+        <div class="screen">
+            <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="status-icons">
+                    <span>📶</span>
+                    <span>📡</span>
+                    <span>🔋</span>
+                </div>
+            </div>
+
+            <div class="header">
+                <h1>Daily Discovery</h1>
+                <p>Explore the finest cafés near you</p>
+            </div>
+
+            <div class="feed-container">
+                <div class="cafe-card">
+                    <div class="cafe-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80');">
+                        <div class="cafe-badge">New</div>
+                    </div>
+                    <div class="cafe-info">
+                        <div class="cafe-header">
+                            <div>
+                                <div class="cafe-name">The Rooftop Brew</div>
+                                <div class="cafe-distance">0.8 km away</div>
+                            </div>
+                            <div class="rating-container">
+                                <span class="star">★</span>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                        </div>
+                        <div class="cafe-description">
+                            Stunning city views with artisan coffee and fresh pastries. Perfect sunset spot.
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Rooftop</span>
+                            <span class="tag">Desserts</span>
+                            <span class="tag">WiFi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cafe-card">
+                    <div class="cafe-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80');">
+                        <div class="cafe-badge">Popular</div>
+                    </div>
+                    <div class="cafe-info">
+                        <div class="cafe-header">
+                            <div>
+                                <div class="cafe-name">Velvet & Cream</div>
+                                <div class="cafe-distance">1.2 km away</div>
+                            </div>
+                            <div class="rating-container">
+                                <span class="star">★</span>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                        </div>
+                        <div class="cafe-description">
+                            Luxurious interior with signature lattes and handcrafted desserts. Instagram-worthy.
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Desserts</span>
+                            <span class="tag">Luxury</span>
+                            <span class="tag">Brunch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cafe-card">
+                    <div class="cafe-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80');">
+                        <div class="cafe-badge">New</div>
+                    </div>
+                    <div class="cafe-info">
+                        <div class="cafe-header">
+                            <div>
+                                <div class="cafe-name">Garden Terrace</div>
+                                <div class="cafe-distance">2.1 km away</div>
+                            </div>
+                            <div class="rating-container">
+                                <span class="star">★</span>
+                                <span class="rating-text">4.7</span>
+                            </div>
+                        </div>
+                        <div class="cafe-description">
+                            Botanical paradise with organic coffee and healthy bites. Pet-friendly outdoor seating.
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Outdoor</span>
+                            <span class="tag">Organic</span>
+                            <span class="tag">Pet-Friendly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cafe-card">
+                    <div class="cafe-image" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800&q=80');">
+                        <div class="cafe-badge">Trending</div>
+                    </div>
+                    <div class="cafe-info">
+                        <div class="cafe-header">
+                            <div>
+                                <div class="cafe-name">Midnight Espresso</div>
+                                <div class="cafe-distance">1.5 km away</div>
+                            </div>
+                            <div class="rating-container">
+                                <span class="star">★</span>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                        </div>
+                        <div class="cafe-description">
+                            Cozy ambiance with specialty coffee and live acoustic sessions on weekends.
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Live Music</span>
+                            <span class="tag">Cozy</span>
+                            <span class="tag">Late Night</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active">
+                    <div class="nav-icon">🏠</div>
+                    <span>Discover</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">🔍</div>
+                    <span>Search</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">❤️</div>
+                    <span>Saved</span>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-icon">👤</div>
+                    <span>Profile</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const feedContainer = document.querySelector('.feed-container');
+        let isScrolling = false;
+
+        feedContainer.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                isScrolling = true;
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 100);
+            }
+        });
+
+        document.querySelectorAll('.cafe-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
