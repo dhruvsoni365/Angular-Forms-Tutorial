@@ -21,7 +21,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     backdrop-filter: blur(10px);
 }
 
@@ -86,9 +86,31 @@ input[type="tel"]:invalid:not(:placeholder-shown) {
     min-height: 20px;
 }
 
+.contact-section {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #667eea;
+}
+
+.contact-section h3 {
+    color: #667eea;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .submit-btn,
 .reset-btn {
-    width: 48%;
+    flex: 1;
+    min-width: 150px;
     padding: 15px;
     border: none;
     border-radius: 8px;
@@ -96,7 +118,6 @@ input[type="tel"]:invalid:not(:placeholder-shown) {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-right: 4%;
 }
 
 .submit-btn {
@@ -118,7 +139,6 @@ input[type="tel"]:invalid:not(:placeholder-shown) {
 .reset-btn {
     background: #6b7280;
     color: white;
-    margin-right: 0;
 }
 
 .reset-btn:hover {
@@ -148,11 +168,22 @@ input[type="tel"]:invalid:not(:placeholder-shown) {
         font-size: 1.5rem;
     }
     
+    .contact-section {
+        padding: 15px;
+    }
+    
+    .contact-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
     .submit-btn,
     .reset-btn {
         width: 100%;
-        margin-right: 0;
-        margin-bottom: 10px;
+        min-width: 100%;
     }
 }
 

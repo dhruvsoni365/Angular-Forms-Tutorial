@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Contacts Form</title>
+    <link rel="stylesheet" href="form-style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Information Form</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Please enter 5 contacts with their names and mobile numbers</p>
+        
+        <form id="fiveContactsForm" class="contact-form">
+            <!-- Contact 1 -->
+            <div class="contact-section">
+                <h3>Contact 1</h3>
+                <div class="form-group">
+                    <label for="name1">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name1" 
+                        name="name1" 
+                        required
+                        placeholder="Enter full name"
+                        minlength="2"
+                        maxlength="50"
+                    >
+                    <span class="error-message" id="name1Error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile1">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile1" 
+                        name="mobile1" 
+                        required
+                        placeholder="Enter mobile number"
+                        pattern="^[\+]?[0-9]{10,15}$"
+                        title="Please enter a valid mobile number (10-15 digits, optional + prefix)"
+                    >
+                    <span class="error-message" id="mobile1Error"></span>
+                </div>
+            </div>
+
+            <!-- Contact 2 -->
+            <div class="contact-section">
+                <h3>Contact 2</h3>
+                <div class="form-group">
+                    <label for="name2">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name2" 
+                        name="name2" 
+                        required
+                        placeholder="Enter full name"
+                        minlength="2"
+                        maxlength="50"
+                    >
+                    <span class="error-message" id="name2Error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile2">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile2" 
+                        name="mobile2" 
+                        required
+                        placeholder="Enter mobile number"
+                        pattern="^[\+]?[0-9]{10,15}$"
+                        title="Please enter a valid mobile number (10-15 digits, optional + prefix)"
+                    >
+                    <span class="error-message" id="mobile2Error"></span>
+                </div>
+            </div>
+
+            <!-- Contact 3 -->
+            <div class="contact-section">
+                <h3>Contact 3</h3>
+                <div class="form-group">
+                    <label for="name3">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name3" 
+                        name="name3" 
+                        required
+                        placeholder="Enter full name"
+                        minlength="2"
+                        maxlength="50"
+                    >
+                    <span class="error-message" id="name3Error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile3">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile3" 
+                        name="mobile3" 
+                        required
+                        placeholder="Enter mobile number"
+                        pattern="^[\+]?[0-9]{10,15}$"
+                        title="Please enter a valid mobile number (10-15 digits, optional + prefix)"
+                    >
+                    <span class="error-message" id="mobile3Error"></span>
+                </div>
+            </div>
+
+            <!-- Contact 4 -->
+            <div class="contact-section">
+                <h3>Contact 4</h3>
+                <div class="form-group">
+                    <label for="name4">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name4" 
+                        name="name4" 
+                        required
+                        placeholder="Enter full name"
+                        minlength="2"
+                        maxlength="50"
+                    >
+                    <span class="error-message" id="name4Error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile4">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile4" 
+                        name="mobile4" 
+                        required
+                        placeholder="Enter mobile number"
+                        pattern="^[\+]?[0-9]{10,15}$"
+                        title="Please enter a valid mobile number (10-15 digits, optional + prefix)"
+                    >
+                    <span class="error-message" id="mobile4Error"></span>
+                </div>
+            </div>
+
+            <!-- Contact 5 -->
+            <div class="contact-section">
+                <h3>Contact 5</h3>
+                <div class="form-group">
+                    <label for="name5">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name5" 
+                        name="name5" 
+                        required
+                        placeholder="Enter full name"
+                        minlength="2"
+                        maxlength="50"
+                    >
+                    <span class="error-message" id="name5Error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile5">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile5" 
+                        name="mobile5" 
+                        required
+                        placeholder="Enter mobile number"
+                        pattern="^[\+]?[0-9]{10,15}$"
+                        title="Please enter a valid mobile number (10-15 digits, optional + prefix)"
+                    >
+                    <span class="error-message" id="mobile5Error"></span>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Submit All Contacts</button>
+                <button type="reset" class="reset-btn">Clear Form</button>
+            </div>
+            
+            <div id="successMessage" class="success-message"></div>
+        </form>
+    </div>
+    
+    <script src="five-contacts-script.js"></script>
+</body>
+</html>
