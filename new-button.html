@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Button</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .new-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .new-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .new-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .new-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .new-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .new-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        #message {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            min-height: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #message.show {
+            opacity: 1;
+        }
+
+        .click-count {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .click-count strong {
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>New Interactive Button</h1>
+        <p>Click the button below to see the magic!</p>
+        
+        <button class="new-button" onclick="handleClick()">
+            <span>Click Me!</span>
+        </button>
+        
+        <div id="message"></div>
+        
+        <div class="click-count">
+            Clicks: <strong id="counter">0</strong>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const messages = [
+            '🎉 Awesome!',
+            '✨ Great job!',
+            '🚀 Keep going!',
+            '⭐ Fantastic!',
+            '🎯 Perfect!',
+            '💫 Amazing!',
+            '🔥 On fire!',
+            '🌟 Brilliant!'
+        ];
+
+        function handleClick() {
+            clickCount++;
+            
+            // Update counter
+            document.getElementById('counter').textContent = clickCount;
+            
+            // Show random message
+            const messageEl = document.getElementById('message');
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            messageEl.textContent = randomMessage;
+            messageEl.classList.add('show');
+            
+            // Hide message after 1.5 seconds
+            setTimeout(() => {
+                messageEl.classList.remove('show');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
