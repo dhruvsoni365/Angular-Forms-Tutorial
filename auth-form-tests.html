@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Form Tests</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #1a202c;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .test-section {
+            margin-bottom: 40px;
+        }
+        
+        .test-section h2 {
+            color: #2d3748;
+            margin-bottom: 16px;
+            font-size: 24px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        
+        .test-results {
+            list-style: none;
+        }
+        
+        .test-results li {
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-results li:hover {
+            transform: translateX(4px);
+        }
+        
+        .test-results li.pass {
+            background: #c6f6d5;
+            color: #2f855a;
+            border-left: 4px solid #48bb78;
+        }
+        
+        .test-results li.fail {
+            background: #fed7d7;
+            color: #c53030;
+            border-left: 4px solid #f56565;
+        }
+        
+        .test-icon {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .test-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .test-detail {
+            font-size: 12px;
+            opacity: 0.8;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .summary h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .summary .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 16px;
+        }
+        
+        .summary .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .summary .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .summary .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        .run-tests-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .run-tests-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #718096;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Authentication Form Test Suite</h1>
+        <p class="subtitle">Comprehensive validation and functionality tests</p>
+        
+        <button class="run-tests-btn" onclick="runAllTests()">▶️ Run All Tests</button>
+        
+        <div id="testContainer">
+            <div class="loading">Click "Run All Tests" to start testing...</div>
+        </div>
+    </div>
+    
+    <script>
+        // Import validation utilities from auth-form.js
+        const ValidationUtils = {
+            validateEmail: function(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email.trim());
+            },
+
+            validatePassword: function(password) {
+                return password.length >= 8;
+            },
+
+            getPasswordStrength: function(password) {
+                if (password.length === 0) return null;
+                
+                let strength = 0;
+                
+                if (password.length >= 8) strength++;
+                if (password.length >= 12) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^a-zA-Z0-9]/.test(password)) strength++;
+                
+                if (strength <= 2) return 'weak';
+                if (strength <= 4) return 'medium';
+                return 'strong';
+            },
+
+            validateAccountTier: function(tier) {
+                return ['free', 'pro'].includes(tier);
+            }
+        };
+        
+        // Test Suite
+        const testSuites = {
+            'Email Validation': [
+                {
+                    name: 'Valid email with standard format',
+                    test: () => ValidationUtils.validateEmail('user@example.com'),
+                    expected: true
+                },
+                {
+                    name: 'Valid email with subdomain',
+                    test: () => ValidationUtils.validateEmail('user@mail.example.com'),
+                    expected: true
+                },
+                {
+                    name: 'Valid email with numbers',
+                    test: () => ValidationUtils.validateEmail('user123@example.com'),
+                    expected: true
+                },
+                {
+                    name: 'Valid email with dots',
+                    test: () => ValidationUtils.validateEmail('first.last@example.com'),
+                    expected: true
+                },
+                {
+                    name: 'Test account 1 email',
+                    test: () => ValidationUtils.validateEmail('testuser1@example.com'),
+                    expected: true
+                },
+                {
+                    name: 'Test account 2 email',
+                    test: () => ValidationUtils.validateEmail('testuser2@example.com'),
+                    expected: true
+                },
+                {
+                    name: 'Invalid email without @',
+                    test: () => ValidationUtils.validateEmail('userexample.com'),
+                    expected: false
+                },
+                {
+                    name: 'Invalid email without domain',
+                    test: () => ValidationUtils.validateEmail('user@'),
+                    expected: false
+                },
+                {
+                    name: 'Invalid email without TLD',
+                    test: () => ValidationUtils.validateEmail('user@example'),
+                    expected: false
+                },
+                {
+                    name: 'Invalid empty email',
+                    test: () => ValidationUtils.validateEmail(''),
+                    expected: false
+                },
+                {
+                    name: 'Invalid email with spaces',
+                    test: () => ValidationUtils.validateEmail('user @example.com'),
+                    expected: false
+                }
+            ],
+            
+            'Password Validation': [
+                {
+                    name: 'Valid 8-character password',
+                    test: () => ValidationUtils.validatePassword('password'),
+                    expected: true
+                },
+                {
+                    name: 'Valid long password',
+                    test: () => ValidationUtils.validatePassword('verylongpassword123'),
+                    expected: true
+                },
+                {
+                    name: 'Test account 1 password',
+                    test: () => ValidationUtils.validatePassword('passwordTest1'),
+                    expected: true
+                },
+                {
+                    name: 'Test account 2 password',
+                    test: () => ValidationUtils.validatePassword('passwordTest2'),
+                    expected: true
+                },
+                {
+                    name: 'Invalid 7-character password',
+                    test: () => ValidationUtils.validatePassword('pass123'),
+                    expected: false
+                },
+                {
+                    name: 'Invalid empty password',
+                    test: () => ValidationUtils.validatePassword(''),
+                    expected: false
+                },
+                {
+                    name: 'Invalid single character',
+                    test: () => ValidationUtils.validatePassword('a'),
+                    expected: false
+                }
+            ],
+            
+            'Password Strength': [
+                {
+                    name: 'Weak password (short, lowercase only)',
+                    test: () => ValidationUtils.getPasswordStrength('password'),
+                    expected: 'weak'
+                },
+                {
+                    name: 'Weak password (numbers only)',
+                    test: () => ValidationUtils.getPasswordStrength('12345678'),
+                    expected: 'weak'
+                },
+                {
+                    name: 'Medium password (mixed case)',
+                    test: () => ValidationUtils.getPasswordStrength('Password123'),
+                    expected: 'medium'
+                },
+                {
+                    name: 'Medium password (with numbers)',
+                    test: () => ValidationUtils.getPasswordStrength('password1234'),
+                    expected: 'medium'
+                },
+                {
+                    name: 'Strong password (all character types)',
+                    test: () => ValidationUtils.getPasswordStrength('Pass123!@#'),
+                    expected: 'strong'
+                },
+                {
+                    name: 'Strong password (long and complex)',
+                    test: () => ValidationUtils.getPasswordStrength('MySecureP@ssw0rd2024'),
+                    expected: 'strong'
+                },
+                {
+                    name: 'Empty password returns null',
+                    test: () => ValidationUtils.getPasswordStrength(''),
+                    expected: null
+                }
+            ],
+            
+            'Account Tier Validation': [
+                {
+                    name: 'Valid "free" tier',
+                    test: () => ValidationUtils.validateAccountTier('free'),
+                    expected: true
+                },
+                {
+                    name: 'Valid "pro" tier',
+                    test: () => ValidationUtils.validateAccountTier('pro'),
+                    expected: true
+                },
+                {
+                    name: 'Invalid "premium" tier',
+                    test: () => ValidationUtils.validateAccountTier('premium'),
+                    expected: false
+                },
+                {
+                    name: 'Invalid empty tier',
+                    test: () => ValidationUtils.validateAccountTier(''),
+                    expected: false
+                },
+                {
+                    name: 'Invalid uppercase "FREE"',
+                    test: () => ValidationUtils.validateAccountTier('FREE'),
+                    expected: false
+                }
+            ]
+        };
+        
+        function runAllTests() {
+            const container = document.getElementById('testContainer');
+            container.innerHTML = '';
+            
+            let totalTests = 0;
+            let passedTests = 0;
+            let failedTests = 0;
+            
+            // Run each test suite
+            for (const [suiteName, tests] of Object.entries(testSuites)) {
+                const section = document.createElement('div');
+                section.className = 'test-section';
+                
+                const heading = document.createElement('h2');
+                heading.textContent = suiteName;
+                section.appendChild(heading);
+                
+                const resultsList = document.createElement('ul');
+                resultsList.className = 'test-results';
+                
+                tests.forEach(testCase => {
+                    totalTests++;
+                    const result = testCase.test();
+                    const passed = result === testCase.expected;
+                    
+                    if (passed) {
+                        passedTests++;
+                    } else {
+                        failedTests++;
+                    }
+                    
+                    const li = document.createElement('li');
+                    li.className = passed ? 'pass' : 'fail';
+                    
+                    li.innerHTML = `
+                        <span class="test-icon">${passed ? '✓' : '✗'}</span>
+                        <span class="test-name">${testCase.name}</span>
+                        <span class="test-detail">Expected: ${testCase.expected}, Got: ${result}</span>
+                    `;
+                    
+                    resultsList.appendChild(li);
+                });
+                
+                section.appendChild(resultsList);
+                container.appendChild(section);
+            }
+            
+            // Add summary
+            const summary = document.createElement('div');
+            summary.className = 'summary';
+            summary.innerHTML = `
+                <h3>Test Summary</h3>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value">${totalTests}</div>
+                        <div class="stat-label">Total Tests</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${passedTests}</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${failedTests}</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">${Math.round((passedTests / totalTests) * 100)}%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(summary);
+            
+            // Log results to console
+            console.log('=== Test Results ===');
+            console.log(`Total: ${totalTests}`);
+            console.log(`Passed: ${passedTests}`);
+            console.log(`Failed: ${failedTests}`);
+            console.log(`Success Rate: ${Math.round((passedTests / totalTests) * 100)}%`);
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('DOMContentLoaded', runAllTests);
+    </script>
+</body>
+</html>

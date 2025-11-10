@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Form</title>
+    <link rel="stylesheet" href="auth-form.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1 id="formTitle">Login to Your Account</h1>
+                <p id="formSubtitle">Enter your credentials to access your account</p>
+            </div>
+            
+            <form id="authForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    >
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            minlength="8"
+                        >
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <span class="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                    <div class="password-strength" id="passwordStrength"></div>
+                </div>
+                
+                <div class="form-group" id="accountTierGroup" style="display: none;">
+                    <label for="accountTier">Account Tier</label>
+                    <select id="accountTier" name="accountTier">
+                        <option value="free">Free Tier</option>
+                        <option value="pro">Pro Account</option>
+                    </select>
+                    <span class="error-message" id="tierError"></span>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Login</span>
+                        <span class="btn-loader" style="display: none;">⏳</span>
+                    </button>
+                </div>
+                
+                <div class="form-footer">
+                    <p id="toggleFormMode">
+                        Don't have an account? 
+                        <a href="#" id="toggleLink">Register here</a>
+                    </p>
+                </div>
+                
+                <div id="responseMessage" class="response-message"></div>
+            </form>
+            
+            <div class="test-accounts">
+                <h3>Test Accounts</h3>
+                <div class="test-account">
+                    <strong>Free Tier:</strong> testuser1@example.com / passwordTest1
+                </div>
+                <div class="test-account">
+                    <strong>Pro Account:</strong> testuser2@example.com / passwordTest2
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="auth-form.js"></script>
+</body>
+</html>
