@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="welcome-style.css">
+</head>
+<body>
+    <div class="background-pattern" aria-hidden="true"></div>
+    <main class="welcome-container">
+        <section class="welcome-card" role="presentation">
+            <p class="eyebrow">Hello there 👋</p>
+            <h1>Welcome to your workspace</h1>
+            <p class="lead">
+                We have everything ready for you. Explore your projects, catch up with your team, 
+                or pick up where you left off. Let&rsquo;s make something great together today.
+            </p>
+
+            <div class="quick-actions">
+                <a class="action primary" href="index.html">View Dashboard</a>
+                <a class="action secondary" href="contact.html">Get Support</a>
+            </div>
+        </section>
+
+        <section class="status-banner" aria-live="polite">
+            <div class="status-light"></div>
+            <div class="status-copy">
+                <h2>Today&rsquo;s vibe: enthusiastic</h2>
+                <p>We checked the systems &ndash; everything looks green and ready to go.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="welcome-footer">
+        <p>&copy; <span id="currentYear"></span> Creative Suite Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const currentYear = new Date().getFullYear();
+        document.getElementById('currentYear').textContent = currentYear;
+    </script>
+</body>
+</html>
