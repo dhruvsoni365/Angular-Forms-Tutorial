@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Series Generator</title>
+    <link rel="stylesheet" href="fibonacci-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fibonacci Series Generator</h1>
+            <p class="subtitle">Explore the beauty of the Fibonacci sequence</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="fibCount">Number of Terms:</label>
+                <input 
+                    type="number" 
+                    id="fibCount" 
+                    min="1" 
+                    max="100" 
+                    value="10"
+                    placeholder="Enter a number (1-100)"
+                >
+                <span class="error-message" id="errorMessage"></span>
+            </div>
+
+            <div class="options-group">
+                <h3>Display Options:</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showList" checked>
+                        <span>List View</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showTable">
+                        <span>Table View</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showStats" checked>
+                        <span>Statistics</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showVisual">
+                        <span>Visual Bars</span>
+                    </label>
+                </div>
+            </div>
+
+            <button id="generateBtn" class="generate-btn">Generate Series</button>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <!-- List View -->
+            <div class="result-card" id="listView">
+                <h2>Fibonacci Sequence</h2>
+                <div class="sequence-display" id="sequenceDisplay"></div>
+            </div>
+
+            <!-- Table View -->
+            <div class="result-card" id="tableView">
+                <h2>Detailed Table</h2>
+                <div class="table-container">
+                    <table id="fibTable">
+                        <thead>
+                            <tr>
+                                <th>Position (n)</th>
+                                <th>Fibonacci Number</th>
+                                <th>Type</th>
+                                <th>Ratio to Previous</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Statistics View -->
+            <div class="result-card" id="statsView">
+                <h2>Statistics</h2>
+                <div class="stats-grid" id="statsGrid"></div>
+            </div>
+
+            <!-- Visual Representation -->
+            <div class="result-card" id="visualView">
+                <h2>Visual Representation</h2>
+                <div class="visual-container" id="visualContainer"></div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>About Fibonacci Series</h2>
+            <p>
+                The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones. 
+                It typically starts with 0 and 1, and continues as: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+            </p>
+            <div class="formula">
+                <strong>Formula:</strong> F(n) = F(n-1) + F(n-2), where F(0) = 0 and F(1) = 1
+            </div>
+            <p>
+                The Fibonacci sequence appears in nature, art, and mathematics. The ratio between consecutive 
+                Fibonacci numbers approaches the golden ratio (φ ≈ 1.618) as the sequence progresses.
+            </p>
+        </div>
+    </div>
+
+    <script src="fibonacci-script.js"></script>
+</body>
+</html>
