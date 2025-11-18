@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Series Generator</title>
+    <link rel="stylesheet" href="fibonacci-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fibonacci Series Generator</h1>
+            <p class="subtitle">Explore the beauty of the Fibonacci sequence</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="terms">Number of Terms:</label>
+                <input 
+                    type="number" 
+                    id="terms" 
+                    name="terms" 
+                    min="1" 
+                    max="100" 
+                    placeholder="Enter number (1-100)"
+                    autocomplete="off"
+                >
+                <span class="error-message" id="error"></span>
+            </div>
+
+            <div class="button-group">
+                <button type="button" id="generateBtn" class="btn btn-primary">Generate Series</button>
+                <button type="button" id="clearBtn" class="btn btn-secondary">Clear</button>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Terms</div>
+                    <div class="stat-value" id="totalTerms">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Sum</div>
+                    <div class="stat-value" id="seriesSum">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Last Term</div>
+                    <div class="stat-value" id="lastTerm">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Golden Ratio</div>
+                    <div class="stat-value" id="goldenRatio">-</div>
+                </div>
+            </div>
+
+            <div class="display-options">
+                <button class="tab-btn active" data-view="list">List View</button>
+                <button class="tab-btn" data-view="visual">Visual View</button>
+                <button class="tab-btn" data-view="table">Table View</button>
+            </div>
+
+            <div class="series-display">
+                <div id="listView" class="view-content active">
+                    <div class="series-list" id="seriesList"></div>
+                </div>
+
+                <div id="visualView" class="view-content">
+                    <div class="visual-container" id="visualContainer"></div>
+                </div>
+
+                <div id="tableView" class="view-content">
+                    <div class="table-container">
+                        <table id="fibTable">
+                            <thead>
+                                <tr>
+                                    <th>Position (n)</th>
+                                    <th>Fibonacci Number</th>
+                                    <th>Ratio (F(n)/F(n-1))</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>About Fibonacci Series</h2>
+            <p>The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1.</p>
+            <div class="formula">
+                <strong>Formula:</strong> F(n) = F(n-1) + F(n-2), where F(0) = 0 and F(1) = 1
+            </div>
+            <p class="golden-info">As the sequence progresses, the ratio between consecutive terms approaches the <strong>Golden Ratio (φ ≈ 1.618)</strong>, a mathematical constant found throughout nature and art.</p>
+        </div>
+    </div>
+
+    <script src="fibonacci-script.js"></script>
+</body>
+</html>
